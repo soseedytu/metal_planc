@@ -24,6 +24,14 @@ def quotations(request):
     return render(request, 'user_supplier/quotation_list.html')
 
 
+def quotation(request, quotation_id):
+    return render(request, 'user_supplier/quotation_edit.html')
+
+
+def quotation_view(request, quotation_id):
+    return render(request, 'user_supplier/quotation_view.html')
+
+
 def user_profile(request, user_id):
     return render(request, 'user_supplier/profile.html')
 

@@ -1,4 +1,4 @@
-{% extends "shared/main_buyer.html" %}
+{% extends "shared/main_supplier.html" %}
 
 {% load staticfiles %}
 {% block main_content %}
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="page-header">
-                    <i class="fa fa-globe"></i> Request for Quotation
+                    <i class="fa fa-globe"></i> Quotation View
                     <small class="pull-right">Date: {{ date }}</small>
                 </h2>
             </div>
@@ -133,17 +133,17 @@
         <!-- /.row -->
 
         <!-- this row will not appear when printing -->
-        <div class="row no-print">
-            <div class="col-xs-12">
-                <a href="{% url 'user_supplier_quotation_edit' 0 %}" class="btn btn-info">
-                    <i class="fa fa-pencil-square-o"></i>
-                    Register Interest &amp; Draft Quotation
-                </a>
-                <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                    <i class="fa fa-download"></i> Generate PDF
-                </button>
-            </div>
-        </div>
+{#        <div class="row no-print">#}
+{#            <div class="col-xs-12">#}
+{#                <a href="{% url 'user_supplier_quotation_edit' 0 %}" class="btn btn-info">#}
+{#                    <i class="fa fa-pencil-square-o"></i>#}
+{#                    Register Interest &amp; Draft Quotation#}
+{#                </a>#}
+{#                <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">#}
+{#                    <i class="fa fa-download"></i> Generate PDF#}
+{#                </button>#}
+{#            </div>#}
+{#        </div>#}
     </section>
 
     <div class="row">
