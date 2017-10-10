@@ -1,0 +1,361 @@
+{% extends "shared/main_buyer.html" %}
+{% load staticfiles %}
+{% block main_content %}
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>
+                Create RFQ
+            </h3>
+        </div>
+        <div class="col-sm-6">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-success">Save</button>
+                <a href="{% url "user_buyer_rfq_view" 1 %}" class="btn btn-info">Preview</a>
+                <button type="button" class="btn btn-warning">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">RFQ Info</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>RFQ Ref</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Person First Name</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>RFQ Date</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Business Registration No.</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Person Last Name</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Payment Terms</label>
+                        <select name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                            <option>7 days</option>
+                            <option>30 days</option>
+                            <option>45 days</option>
+                            <option>60 days</option>
+                            <option>90 days</option>
+                            <option>120 days</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">File Attachments</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-sm btn-info" value="+ Attach file">
+                        + Add File Attachment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    File Attachments#}
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Search Services</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Service Category 1</label>
+                        <select class="form-control" size="10">
+                            <option>Metal Material</option>
+                            <option>Fabrication Services</option>
+                            <option>option 3</option>
+                            <option>option 4</option>
+                            <option>option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Service Category 2</label>
+                        <select class="form-control" size="10">
+                            <option>Plate</option>
+                            <option>C Channel</option>
+                            <option>Angle Bar</option>
+                            <option>option 4</option>
+                            <option>option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Material</label>
+                        <select class="form-control" size="10">
+                            <option>Mild Steel</option>
+                            <option>Stainless Steel</option>
+                            <option>Aluminum</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+
+                    <div class="form-group">
+                        <label>Thickness</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Length</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Width</label>
+                        <input type="text">
+                    </div>
+                    <button class="btn btn-sm btn-info">
+                        + Add Service
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    search services#}
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Selected Services</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover">
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>Cat 1</th>
+                            <th>Cat 2</th>
+                            <th>Cat 3</th>
+                            <th width="10%">Metal Type</th>
+                            <th>Supplier Provide Materials</th>
+                            <th>Supplier Provide Transport</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>CNC Cutting</td>
+                            <td>Laser Cutting</td>
+                            <td></td>
+                            <td>Steel</td>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>John Doe</td>
+                            <td>11-7-2014</td>
+                            <td></td>
+                            <td>Steel</td>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>John Doe</td>
+                            <td>11-7-2014</td>
+                            <td></td>
+                            <td>Steel</td>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-12">
+                    <h4>Parameters</h4>
+                </div>
+                <div class="col-sm-12">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Param</th>
+                            <th>Value</th>
+                            <th>UOM</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                Width
+                            </td>
+                            <td>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Length
+                            </td>
+                            <td>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Thickness
+                            </td>
+                            <td>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    selected services#}
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Search Suppliers</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Company Name</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>&nbsp;</th>
+                </tr>
+                {% if supplier_list %}
+
+                    {% for supplier in supplier_list %}
+
+                        <tr>
+                            <td>
+                                <img class="profile-user-img img-responsive img-circle"
+                                     src="{% static 'market_app' %}/img/user2-160x160.jpg"
+                                     alt="Supplier profile picture">
+                            </td>
+                            <td>{{ supplier.Name }}</td>
+                            <td>{{ supplier.Address }}</td>
+                            <td><span class="label label-success">Approved</span></td>
+                            <td>
+                                <a href='{% url "market_app:supplier_profile" supplier.pk %}'>View Profile</a>
+                                <br>
+                                <a href='{% url "market_app:buyer_profile" %}'>Request for Quote</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                {% else %}
+                    <tr>
+                        <td colspan="5">
+                            <p>No supplier company information found.</p>
+                        </td>
+                    </tr>
+                {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {#    search suppliers#}
+
+    <script src="{% static 'market_app' %} /bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="{% static 'market_app' %} /bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+{% endblock %}
