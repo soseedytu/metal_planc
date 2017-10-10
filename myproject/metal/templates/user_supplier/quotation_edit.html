@@ -1,0 +1,138 @@
+{% extends "shared/main_supplier.html" %}
+{% load staticfiles %}
+{% block main_content %}
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>
+                Create Quotation
+            </h3>
+        </div>
+        <div class="col-sm-6">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-success">Save</button>
+                <a href="{% url "user_supplier_quotation_view" 1 %}" class="btn btn-info">Preview</a>
+                <button type="button" class="btn btn-warning">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">RFQ Info</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>RFQ Ref</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Person First Name</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>RFQ Date</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Business Registration No.</label>
+                        <input name="Username" type="text" readonly class="form-control"
+                               placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Person Last Name</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Payment Terms</label>
+                        <select name="Username" type="text" class="form-control" placeholder="Please enter your name">
+                            <option>7 days</option>
+                            <option>30 days</option>
+                            <option>45 days</option>
+                            <option>60 days</option>
+                            <option>90 days</option>
+                            <option>120 days</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">File Attachments</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-sm btn-info" value="+ Attach file">
+                        + Add File Attachment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    File Attachments#}
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Remarks / Notes to Buyer</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Enter remarks or notes to buyer <optional>"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    File Attachments#}
+
+    <script src="{% static 'market_app' %} /bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="{% static 'market_app' %} /bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+{% endblock %}

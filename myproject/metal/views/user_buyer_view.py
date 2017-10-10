@@ -31,5 +31,8 @@ def quotations(request):
     return render(request, 'user_buyer/quotation_list.html')
 
 
+def quotation_view(request, quotation_id):
+    return render(request, 'user_buyer/quotation_view.html')
+
 def user_profile(request, user_id):
     return render(request, 'user_buyer/profile.html')

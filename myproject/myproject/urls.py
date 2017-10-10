@@ -66,6 +66,9 @@ urlpatterns = [
     url(r'^buyer/quotations/$', user_buyer_view.quotations, name="user_buyer_quotation_list"),
     # http://localhost:8000/buyer/1
     url(r'^buyer/(?P<user_id>[0-9]+)$', user_buyer_view.user_profile, name="user_buyer_profile"),
+    # http://localhost:8000/buyer/quotation/1/details
+    url(r'^buyer/quotation/(?P<quotation_id>[0-9]+)/details$', user_buyer_view.quotation_view,
+        name="user_buyer_quotation_view"),
 
     # Supplier
     # http://localhost:8000/supplier/
@@ -80,4 +83,11 @@ urlpatterns = [
     url(r'^supplier/quotations/$', user_supplier_view.quotations, name="user_supplier_quotation_list"),
     # http://localhost:8000/supplier/1
     url(r'^supplier/(?P<user_id>[0-9]+)$', user_supplier_view.user_profile, name="user_supplier_profile"),
+    # http://localhost:8000/supplier/quotation/1
+    url(r'^supplier/quotation/(?P<quotation_id>[0-9]+)$', user_supplier_view.quotation,
+        name="user_supplier_quotation_edit"),
+    # http://localhost:8000/supplier/quotation/1/details
+    url(r'^supplier/quotation/(?P<quotation_id>[0-9]+)/details$', user_supplier_view.quotation_view,
+        name="user_supplier_quotation_view"),
+
 ]
