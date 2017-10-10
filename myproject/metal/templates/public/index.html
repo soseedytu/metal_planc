@@ -77,7 +77,7 @@
                 <div class="wrap">
                     <p class="form-title">
                         or, Sign In</p>
-                    <form name="loginform" id="loginform" class="login" action="#" method="post" >
+                    <form name="loginform" id="loginform" class="login" action="{% url 'auth_login' %}"  method="post" >
 
                       {% csrf_token %}
 
@@ -95,7 +95,7 @@
                                   </div>
                               </div>
                               <div class="col-md-12 forgot-pass-content">
-                                  <a href="#" class="forgot-pass pull-right" style="color: white !important;">Forgot Password</a>
+                                  <a href="{% url 'password_reset' %}" class="forgot-pass pull-right" style="color: white !important;">Forgot Password</a>
                               </div>
                           </div>
                       </div>

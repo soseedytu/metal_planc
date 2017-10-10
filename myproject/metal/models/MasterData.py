@@ -38,7 +38,10 @@ class User_Profile(models.Model):
     Created_By = models.CharField(max_length=45, null=False, default="admin")
     Modified_Date = models.DateTimeField(auto_now_add=True, null=False)
     Modified_By = models.CharField(max_length=45, null=False, default="admin")
-    Status = models.IntegerField(null=False, default=1000001)
+    Status = models.IntegerField(null=False, default=1)
+
+    def __str__(self):
+        return self.user.username
 
 class Buyer(models.Model):
     User_Profile = models.OneToOneField(User_Profile, primary_key=True, db_index=True)
@@ -47,6 +50,9 @@ class Buyer(models.Model):
     Total_Withdraw_Rfq_Count = models.IntegerField(default=0)
     Total_Award_Rfq_Count = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.User_Profile.user.username
+
 class Supplier(models.Model):
     User_Profile = models.OneToOneField(User_Profile, primary_key=True, db_index=True)
     MServiceTags = models.CharField(max_length=400)
@@ -54,6 +60,8 @@ class Supplier(models.Model):
     Total_QuotesWon = models.IntegerField(default=0)
     Total_QuotesMissed = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.User_Profile.user.username
 
 class Supplier_Service(models.Model):
     Id = models.AutoField(primary_key=True) # system will add automatically

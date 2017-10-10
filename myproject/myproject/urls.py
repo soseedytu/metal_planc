@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from metal.test_views import my_first_view
 from metal.views import public_view
 from metal.views import market_view
@@ -29,6 +30,20 @@ urlpatterns = [
     # Public App
     # http://localhost:8000/public/
     url(r'^public/$', public_view.index, name="public_index"),
+    # http://localhost:8000/market_app/buyer/dashboard
+    url(r'^login/$', public_view.login, name="auth_login"),
+    url(r'^password_reset/$', auth_views.password_reset, {
+        'post_reset_redirect': '/password_reset/done/'
+    }, name='password_reset'),
+    url(r'^password_reset/done/$', auth_views.password_reset_done,
+        name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        auth_views.password_reset_confirm, {
+         'post_reset_redirect': '/reset/done/'
+    }, name='password_reset_confirm'),
+    url(r'^reset/done/$', auth_views.password_reset_complete,
+        name='password_reset_complete'),
+    url(r'^logout/$', public_view.sign_out, name="sign_out"),
 
     # Market App
     # http://localhost:8000/register/

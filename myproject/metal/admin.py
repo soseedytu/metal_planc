@@ -23,7 +23,7 @@ from .models.Codes import Tag
 from django.contrib import admin
 
 # set View Site Link of Admin Site
-admin.site.site_url = '/public_site'
+admin.site.site_url = '/public'
 
 #Code Category
 class CodeCategoryAdmin(admin.ModelAdmin):
@@ -41,7 +41,7 @@ class CodeTableAdmin(admin.ModelAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
    date_hierarchy = 'Created_Date'
    search_fields = ['user']
-   list_display = ('Id', 'user', 'Title', 'Rfq_Count', 'Quotation_Count', 'Contact_Number', 'Company')
+   list_display = ('Id', 'user', 'Title','Company','Contact_Number','Rfq_Count','Quotation_Count')
    list_filter = ('Created_Date',)
 
 admin.site.register(Document_Number)
