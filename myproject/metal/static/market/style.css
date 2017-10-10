@@ -1,0 +1,9 @@
+ul{
+    list-style: none;
+}
+
+.vcenter {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    float: none !important;
+}
