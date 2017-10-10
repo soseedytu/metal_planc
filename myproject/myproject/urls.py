@@ -19,6 +19,8 @@ from metal.test_views import my_first_view
 from metal.views import public_view
 from metal.views import market_view
 from metal.views import user_view
+from metal.views import user_buyer_view
+from metal.views import user_supplier_view
 
 
 urlpatterns = [
@@ -34,5 +36,13 @@ urlpatterns = [
     url(r'^register/', user_view.registration_main, name="register_user_index"),
     # http://localhost:8000/market/
     url(r'^market/', market_view.index, name="market_index"),
+
+    # Buyer
+    # http://localhost:8000/buyer/
+    url(r'^buyer/', user_buyer_view.index, name="user_buyer_index"),
+
+    # Supplier
+    # http://localhost:8000/supplier/
+    url(r'^supplier/', user_supplier_view.index, name="user_supplier_index"),
 ]
 
