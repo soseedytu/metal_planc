@@ -31,7 +31,7 @@ class Code_Table(models.Model):
         return self.Description
 
 
-class Tags(models.Model):
+class Tag(models.Model):
     Id = models.AutoField(primary_key=True) # system will add automatically
     TagName = models.CharField(max_length=45, db_index=True)
     CreatedDate = models.DateTimeField(auto_now_add=True, null=False)

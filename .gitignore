@@ -1,0 +1,6 @@
+
+*.pyc
+*.xml
+*.iml
+myproject/metal/migrations/0001_initial.py
+myproject/metal/migrations/__init__.py

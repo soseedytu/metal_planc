@@ -50,7 +50,7 @@ class Supplier_Quotation(models.Model):
     Revision_No = models.IntegerField()
 
 
-class Document_Required_Services(models.Model):
+class Document_Required_Service(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
     Service_Name = models.CharField(max_length=45)
     Created_Date = models.DateTimeField(auto_now_add=True, null=False)
@@ -62,7 +62,7 @@ class Document_Required_Services(models.Model):
     Rfq_Document = models.ForeignKey(Document, db_index=True)
 
 
-class Document_File_Attachments(models.Model):
+class Document_File_Attachment(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
     Document = models.ForeignKey(Document, db_index=True)
     FileName = models.CharField(max_length=150, null=False)
@@ -75,7 +75,7 @@ class Document_File_Attachments(models.Model):
     Version = models.DateTimeField(null=True)
 
 
-class Document_Clarifications(models.Model):
+class Document_Clarification(models.Model):
     Id = models.AutoField(primary_key=True, null=False)  # system will add automatically
     ClarificationQuestion = models.CharField(max_length=400, null=True)
     ClarificationAnswer = models.CharField(max_length=400, null=True)
@@ -84,14 +84,14 @@ class Document_Clarifications(models.Model):
     Version = models.DateTimeField(null=True)
 
 
-class Document_Required_Service_Parameters(models.Model):
+class Document_Required_Service_Parameter(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
-    Document_Required_Services = models.ForeignKey(Document_Required_Services, null=False, db_index=True)
+    Document_Required_Services = models.ForeignKey(Document_Required_Service, null=False, db_index=True)
     Parameter_Name = models.CharField(max_length=45, null=True)
     Parameter_Value = models.CharField(max_length=45, null=True)
 
 
-class Document_Targeted_Suppliers(models.Model):
+class Document_Targeted_Supplier(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
     Document = models.ForeignKey(Document, db_index=True, null=False)
     User_Profile = models.ForeignKey(User_Profile, db_index=True, null=False)
