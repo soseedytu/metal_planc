@@ -41,7 +41,7 @@ class CodeTableAdmin(admin.ModelAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
    date_hierarchy = 'Created_Date'
    search_fields = ['user']
-   list_display = ('Id', 'user', 'Title','Company','Contact_Number','Rfq_Count','Quotation_Count')
+   list_display = ('Id', 'user', 'User_Type', 'Title','Company','Contact_Number','Rfq_Count','Quotation_Count')
    list_filter = ('Created_Date',)
 
 admin.site.register(Document_Number)
