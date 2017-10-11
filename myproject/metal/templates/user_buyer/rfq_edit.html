@@ -334,9 +334,9 @@
                             <td>{{ supplier.Address }}</td>
                             <td><span class="label label-success">Approved</span></td>
                             <td>
-                                <a href='{% url "market_app:supplier_profile" supplier.pk %}'>View Profile</a>
+                                <a href='{% url "supplier_profile" supplier.pk %}'>View Profile</a>
                                 <br>
-                                <a href='{% url "market_app:buyer_profile" %}'>Request for Quote</a>
+                                <a href='{% url "buyer_profile" %}'>Request for Quote</a>
                             </td>
                         </tr>
 

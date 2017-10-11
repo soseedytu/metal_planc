@@ -3,122 +3,297 @@
 
 {% block main_content %}
 
-    <div class="row">
-        <section>
-            <div class="wizard">
-                <div class="wizard-inner">
-                    <div class="connecting-line"></div>
-                    <ul class="nav nav-tabs" role="tablist">
+    <form role="form" action="{% url 'register_user_index' %}" method="post">
+        {% csrf_token %}
 
-                        <li role="presentation" class="active">
-                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                 <i class="fa fa-user"></i>
                             </span>
-                            </a>
-                        </li>
+                        </a>
+                    </li>
 
-                        <li role="presentation" class="disabled">
-                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                    <li id="iconStep2" role="presentation" class="disabled">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="fa fa-cube"></i>
                             </span>
-                            </a>
-                        </li>
-                        <li role="presentation" class="disabled">
-                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                        </a>
+                    </li>
+                    <li id="iconStep3" role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
                                 <i class="fa fa-cubes"></i>
                             </span>
-                            </a>
-                        </li>
-
-                        <li role="presentation" class="disabled">
-                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        </a>
+                    </li>
+                    <li id="iconStep4" role="presentation" class="disabled">
+                        <a href="#step4" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="fa fa-check-circle-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
                             <span class="round-tab">
                                 <i class="fa fa-flag-checkered"></i>
                             </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-                <form role="form">
-                    <div class="tab-content">
-                        <div class="tab-pane active" role="tabpanel" id="step1">
+            <div class="tab-content">
+                <div class="tab-pane active" role="tabpanel" id="step1">
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="box-body">
+                                <h3>Registration Details</h3>
+                            </div>
 
                             <div class="row">
-                                <div class="col-md-12">
-
+                                <div class="col-md-6">
                                     <div class="box-body">
 
-                                        <h3>Step 1</h3>
-                                        <p>This is step 1</p>
+                                        <div class="form-group">
+                                            <label>Company Registration No. (UEN) <a>?</a> < *Add a link to
+                                                government website*</label>
+                                            <input name="MCompany_Id" type="number" class="form-control"
+                                                   placeholder="Your Company Name">
+                                            {% if BuyerVM.MCompany_Id.errors %}
+
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                                    {{ BuyerVM.MCompany_Id.errors }}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Company Name</label>
+                                            <input name="MCompany_Id" type="number" class="form-control"
+                                                   placeholder="Your Company Name">
+                                            {% if BuyerVM.MCompany_Id.errors %}
+
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                                    {{ BuyerVM.MCompany_Id.errors }}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Contact Number</label>
+                                            <input name="ContactNumber" type="text" class="form-control"
+                                                   placeholder="Number for suppliers to reach you">
+                                            {% if BuyerVM.ContactNumber.errors %}
+
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                                    {{ BuyerVM.ContactNumber.errors }}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
 
                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="box-body">
 
+                                        <div class="form-group">
+                                            <label>Name</label>
+
+                                            <input name="Username" type="text" class="form-control"
+                                                   placeholder="Please enter your name">
+                                            {% if BuyerVM.Username.errors %}
+
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                                    {{ BuyerVM.Username.errors }}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Job Title</label>
+                                            <input name="Title" type="text" class="form-control"
+                                                   placeholder="Your job title at your company">
+                                            {% if BuyerVM.Title.errors %}
+
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                                    {{ BuyerVM.Title.errors }}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Email Address</label>
+                                            <input name="EmailAddress" type="text" class="form-control"
+                                                   placeholder="Company email address">
+                                            {% if BuyerVM.EmailAddress.errors %}
+
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                                    {{ BuyerVM.EmailAddress.errors }}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input name="Password" type="password" class="form-control"
+                                                   placeholder="Password to sign in later">
+                                            {% if BuyerVM.Password.errors %}
+
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                                    {{ BuyerVM.Password.errors }}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>
+                                                <input id="chkRegisterAsSupplier" name="register_as_supplier" type="checkbox">
+                                                &nbsp;Please register me as a supplier
+                                            </label>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
 
-
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane" role="tabpanel" id="step2">
+                            <!-- /.box-header -->
                             <div class="box-body">
 
-                                <h3>Step 2</h3>
-                                <p>This is step 2</p>
 
                             </div>
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
-                                </li>
-                            </ul>
+                            <!-- /.box-body -->
+
                         </div>
-                        <div class="tab-pane" role="tabpanel" id="step3">
-                            <div class="box-body">
-
-                                <h3>Step 2</h3>
-                                <p>This is step 2</p>
-
-                            </div>
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-default next-step">Skip</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and
-                                        continue
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane" role="tabpanel" id="complete">
-                            <div class="box-body">
-
-                                <h3>Completed</h3>
-                                <p>You have completed your registration.</p>
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
                     </div>
-                </form>
-            </div>
-        </section>
-    </div>
 
+
+                    <ul class="list-inline pull-right">
+                        <li>
+                            <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.step 1 -->
+                <div class="tab-pane" role="tabpanel" id="step2">
+                    <div class="box-body">
+
+                        <h3>Step 2</h3>
+                        <p>This is step 2</p>
+
+                    </div>
+                    <ul class="list-inline pull-right">
+                        <li>
+                            <button type="button" class="btn btn-default prev-step">Previous</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.step 2 -->
+                <div class="tab-pane" role="tabpanel" id="step3">
+                    <div class="box-body">
+
+                        <h3>Step 3</h3>
+                        <p>This is step 3</p>
+
+                    </div>
+                    <ul class="list-inline pull-right">
+                        <li>
+                            <button type="button" class="btn btn-default prev-step">Previous</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-default next-step">Skip</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-primary btn-info-full next-step">Save and
+                                continue
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.step 3 -->
+                <div class="tab-pane" role="tabpanel" id="step4">
+                    <div class="box-body">
+
+                        <h3>Step 4</h3>
+                        <p>This is step 4</p>
+
+                    </div>
+                    <ul class="list-inline pull-right">
+                        <li>
+                            <button type="button" class="btn btn-default prev-step">Previous</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-default next-step">Skip</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-primary btn-info-full next-step">Save and
+                                continue
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.step 4 -->
+                <div class="tab-pane" role="tabpanel" id="complete">
+                    <div class="box-body">
+
+                        <h3>Completed</h3>
+                        <p>You have completed your registration.</p>
+
+                    </div>
+                </div>
+                <!-- /.complete -->
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </form>
 
     <!-- AdminLTE for demo purposes -->
     <script src="{% static 'market' %}/register/register_wizard.js"></script>

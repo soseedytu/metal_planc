@@ -2,6 +2,7 @@ from django.db import models
 from metal.models.Codes import Code_Table
 from django.contrib.auth.models import User
 
+
 class Document_Number(models.Model):
     Id = models.AutoField(primary_key=True, unique=True, db_index=True)  # system will add automatically
     Name = models.CharField(max_length=45)
@@ -13,6 +14,7 @@ class Document_Number(models.Model):
     def __str__(self):
         return self.Id
 
+
 class Company(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
     Name = models.CharField(max_length=45, null=False)
@@ -23,6 +25,7 @@ class Company(models.Model):
 
     def __str__(self):
         return self.Name
+
 
 class User_Profile(models.Model):
     Id = models.AutoField(primary_key=True)
@@ -43,6 +46,7 @@ class User_Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+
 class Buyer(models.Model):
     User_Profile = models.OneToOneField(User_Profile, primary_key=True, db_index=True)
     Rfq_Count = models.IntegerField(default=0)
@@ -52,6 +56,7 @@ class Buyer(models.Model):
 
     def __str__(self):
         return self.User_Profile.user.username
+
 
 class Supplier(models.Model):
     User_Profile = models.OneToOneField(User_Profile, primary_key=True, db_index=True)
@@ -63,8 +68,9 @@ class Supplier(models.Model):
     def __str__(self):
         return self.User_Profile.user.username
 
+
 class Supplier_Service(models.Model):
-    Id = models.AutoField(primary_key=True) # system will add automatically
+    Id = models.AutoField(primary_key=True)  # system will add automatically
     Parent_Services = models.ForeignKey('self', db_index=True)
     Service_Name = models.CharField(max_length=45, null=False, unique=True, db_index=True)
     Metal_Type = models.ForeignKey(Code_Table, db_index=True)
@@ -104,4 +110,3 @@ class User_Profile_Rating(models.Model):
     Created_Date = models.DateTimeField(auto_now_add=True, null=False)
     Created_By = models.CharField(max_length=45, null=False)
     Version = models.DateTimeField(null=True)
-
