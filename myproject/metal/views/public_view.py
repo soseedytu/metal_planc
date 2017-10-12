@@ -49,15 +49,20 @@ def login(request):
                 #raise  Http404("User does not exist")
                 print('user does not exist')
                 #context['error'] = 'User not exists'
-                messages.error(request, 'User does not exist!')
+                messages.error(request, 'You don''t have authorization. Please register first.')
                 return HttpResponseRedirect(reverse('public_index'))
                 #_url = 'site/index.html'
             if username is not None:
                 print (username)
                 user = authenticate(request,username=username,password=password)
-                user_type = User_Profile.objects.get(user=_user).User_Type
-                user_type = user_type.Name.lower()
-                print(user_type)
+                try:
+                    user_type = User_Profile.objects.get(user=_user).User_Type
+                    user_type = user_type.Name.lower()
+                    print(user_type)
+                except ObjectDoesNotExist:
+                    print('user does not exist')
+                    messages.error(request, 'Insufficient authorization')
+                    return HttpResponseRedirect(reverse('public_index'))
                 if user is not None:
                     print ('authenticated')
                     if user.is_active:
@@ -77,16 +82,16 @@ def login(request):
                         #_url = 'site/index.html'
                         return HttpResponseRedirect(reverse('public_index'))
                 else:
-                    print ('username or password wrong')
+                    print ('Invalid Username or Password.')
                     #return HttpResponse('username or password wrong')
                     #raise forms.ValidationError(form.fields['EmailAddress'].error_messages['Bad Username or Password'])
-                    messages.error(request, 'Bad Username or Password.')
+                    messages.error(request, 'Invalid Username or Password.')
                     #_url = 'site/index.html'
                     return HttpResponseRedirect(reverse('public_index'))
         else:
-            messages.error(request, 'Form is not valid.')
+            messages.error(request, 'E92: Form is not valid.')
             #_url = 'site/index.html'
-            messages.error(request, 'Please check your input.')
+            #messages.error(request, 'Please check your input.')
             return HttpResponseRedirect(reverse('public_index'))
     else:
         form = LoginForm()
