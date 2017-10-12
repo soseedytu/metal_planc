@@ -243,7 +243,24 @@ function update_destination_element(elementId, json, parentText, thisText, thisS
             'value="' + element.Id + '" /> ' +
             element.Service_Name;
 
+        if(element.Parent_Service__Id != undefined && nextStep == 4 ){
+            var startRow = "<div class='row'>";
+            var endRow = "</div>";
+
+            var widthCtl = "<div class='col-md-3'><label>supported width</label><input type='input' placeholder='min width' title='Please provide min width that you can support.' /><input type='input' placeholder='max width' title='Please provide max width that you can support.' /></div>";
+            var heightCtl = "<div class='col-md-3'><label>supported height</label><input type='input' placeholder='min height' title='Please provide min height that you can support.' /><input type='input' placeholder='max height' title='Please provide max height that you can support.'  /></div>";
+            var thicknessCtl = "<div class='col-md-3'><label>supported thickness</label><input type='input' placeholder='min thickness' title='Please provide min thickness that you can support.' /><input type='input' placeholder='max thickness' title='Please provide max thickness that you can support.' /></div>";
+
+            checkboxElement = "<div class='col-md-3'>" + checkboxElement + "</div>";
+            checkboxElement = startRow + checkboxElement;
+            checkboxElement = checkboxElement + widthCtl + heightCtl + thicknessCtl;
+            checkboxElement = checkboxElement + endRow;
+
+        }
+
+
         finalElment = finalElment + openingElement + checkboxElement + closingElement;
+        finalElment = finalElment + "<hr style='border-bottom: 1px solid gray'/>";
 
     });
 
