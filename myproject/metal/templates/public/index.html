@@ -96,6 +96,16 @@
                               </div>
                               <div class="col-md-12 forgot-pass-content">
                                   <a href="{% url 'password_reset' %}" class="forgot-pass pull-right" style="color: white !important;">Forgot Password</a>
+                                  <br/>
+                                  {% if messages %}
+                                    <ul class="messages">
+                                      {% for message in messages %}
+                                      <div class="alert alert-danger">
+                                        <li class="{{ message.tags }}">{{ message }}</li>
+                                      </div>
+                                      {% endfor %}
+                                    </ul>
+                                  {% endif %}
                               </div>
                           </div>
                       </div>
@@ -116,18 +126,10 @@
                         {% endif %}
                       </div>
                       {% endif %}-->
-                      {% if messages %}
-                        <ul class="messages">
-                          {% for message in messages %}
-                            <li class="{{ message.tags }}">{{ message }}</li>
-                          {% endfor %}
-                        </ul>
-                      {% endif %}
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
   </div>
   </div>
