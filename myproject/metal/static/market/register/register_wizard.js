@@ -44,6 +44,8 @@ $(document).ready(function () {
             lastTab($active);
         }
 
+        console.log($(".select2").val());
+
     });
     $(".prev-step").click(function (e) {
 

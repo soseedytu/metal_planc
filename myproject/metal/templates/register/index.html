@@ -117,6 +117,20 @@
                                             {% endif %}
                                         </div>
 
+
+                                        <div class="form-group">
+                                            <label>Tag</label>
+                                            <select class="form-control select2" multiple="multiple" style="width: 100%;">
+                                                {% if tags %}
+
+                                                    {% for tag in tags %}
+                                                        <option value="{{ tag.Id }}">{{ tag.TagName }}</option>
+                                                    {% endfor %}
+
+                                                {% endif %}
+                                            </select>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -311,7 +325,14 @@
         </div>
     </form>
 
-    <!-- AdminLTE for demo purposes -->
+    <!-- Select2 -->
+    <script src="{% static 'market' %}/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <!-- register wizard -->
     <script src="{% static 'market' %}/register/register_wizard.js"></script>
-
+    <!-- initiate page level javascript components -->
+    <script type="application/x-javascript">
+        $(function () {
+            $('.select2').select2();
+        });
+    </script>
 {% endblock %}
