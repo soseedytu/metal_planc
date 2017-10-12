@@ -41,7 +41,8 @@
                         </a>
                     </li>
                     <li role="presentation" class="disabled">
-                        <a id="completeAnchor" href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                        <a id="completeAnchor" href="#complete" data-toggle="tab" aria-controls="complete" role="tab"
+                           title="Complete">
                             <span class="round-tab">
                                 <i class="fa fa-flag-checkered"></i>
                             </span>
@@ -192,7 +193,8 @@
 
                                         <div class="form-group">
                                             <label>
-                                                <input id="chkRegisterAsSupplier" name="register_as_supplier" type="checkbox">
+                                                <input id="chkRegisterAsSupplier" name="register_as_supplier"
+                                                       type="checkbox">
                                                 &nbsp;Please register me as a supplier
                                             </label>
                                         </div>
@@ -207,7 +209,8 @@
 
                     <ul class="list-inline pull-right">
                         <li>
-                            <button id="btnNext" type="button" class="btn btn-primary next-step">Save and continue</button>
+                            <button id="btnNext" type="button" class="btn btn-primary next-step">Save and continue
+                            </button>
                             <button id="btnSubmit" type="button" class="btn btn-primary next-step">Register</button>
                         </li>
                     </ul>
@@ -216,8 +219,29 @@
                 <div class="tab-pane" role="tabpanel" id="step2">
                     <div class="box-body">
 
-                        <h3>Step 2</h3>
-                        <p>This is step 2</p>
+                        <h3>Please select services ...</h3>
+
+                        <div class="box box-solid box-default">
+                            <div class="box-body">
+                                {% if root_services %}
+
+                                    {% for service in root_services %}
+                                        <div class="form-group">
+                                            <label>
+                                                <input class="chk_service" data-thistext="{{ service.Service_Name }}"
+                                                       data-parenttext=""
+                                                       data-renderin="step3_list"
+                                                       data-step="2"
+                                                       type="checkbox"
+                                                       value="{{ service.Id }}"/> {{ service.Service_Name }}
+                                            </label>
+                                        </div>
+                                    {% endfor %}
+
+                                {% endif %}
+                            </div>
+                        </div>
+
 
                     </div>
                     <ul class="list-inline pull-right">
@@ -233,8 +257,11 @@
                 <div class="tab-pane" role="tabpanel" id="step3">
                     <div class="box-body">
 
-                        <h3>Step 3</h3>
-                        <p>This is step 3</p>
+                        <h3>Please select sub-services</h3>
+                        <div id="step3_list">
+
+                        </div>
+
 
                     </div>
                     <ul class="list-inline pull-right">
@@ -252,8 +279,10 @@
                 <div class="tab-pane" role="tabpanel" id="step4">
                     <div class="box-body">
 
-                        <h3>Step 4</h3>
-                        <p>This is step 4</p>
+                        <h3>Please select material</h3>
+                        <div id="step4_list">
+
+                        </div>
 
                     </div>
                     <ul class="list-inline pull-right">

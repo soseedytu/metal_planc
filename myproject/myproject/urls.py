@@ -22,6 +22,7 @@ from metal.views import market_view
 from metal.views import user_view
 from metal.views import user_buyer_view
 from metal.views import user_supplier_view
+from metal.views import service_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -90,4 +91,8 @@ urlpatterns = [
     url(r'^supplier/quotation/(?P<quotation_id>[0-9]+)/details$', user_supplier_view.quotation_view,
         name="user_supplier_quotation_view"),
 
+    # Service
+    # http://localhost:8000/supplier/service/1
+    url(r'^supplier/service/(?P<service_id>[0-9]+)/$', service_view.get_service,
+        name="user_supplier_service_by_id"),
 ]

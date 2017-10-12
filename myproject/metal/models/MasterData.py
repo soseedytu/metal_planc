@@ -71,19 +71,26 @@ class Supplier(models.Model):
 
 class Supplier_Service(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
-    Parent_Services = models.ForeignKey('self', db_index=True)
-    Service_Name = models.CharField(max_length=45, null=False, unique=True, db_index=True)
-    Metal_Type = models.ForeignKey(Code_Table, db_index=True)
+    Parent_Service = models.ForeignKey('self', db_index=True, null=True)
+    Service_Name = models.CharField(max_length=45, null=False, unique=False, db_index=True)
+    Metal_Type = models.ForeignKey(Code_Table, db_index=True, null=True)
     Created_Date = models.DateTimeField(auto_now_add=True, null=False)
     Created_By = models.CharField(max_length=45, null=False, default="admin")
     Modified_Date = models.DateTimeField(auto_now_add=True, null=False)
     Modified_By = models.CharField(max_length=45, null=False, default="admin")
     Status = models.IntegerField(null=False)
     Version = models.DateTimeField(null=True)
-    Common_Shape_Image = models.BinaryField()
+    Common_Shape_Image = models.BinaryField(null=True)
 
     def __str__(self):
-        return self.ServiceName
+        return self.Service_Name
+
+    def as_dict(self):
+        return {
+            "Id": self.Id,
+            "Service_Name": self.Service_Name
+            # other stuff
+        }
 
 
 class Supplier_Services_Profile(models.Model):
