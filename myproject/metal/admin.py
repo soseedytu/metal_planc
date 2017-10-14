@@ -25,6 +25,12 @@ from django.contrib import admin
 # set View Site Link of Admin Site
 admin.site.site_url = '/public'
 
+#Company
+class CompanyAdmin(admin.ModelAdmin):
+   search_fields = ['Name', 'Address', 'Domain']
+   list_display = ('Id','Name', 'Address', 'Domain','Reg_No', 'Unique_Code')
+   list_filter = ('Name','Domain',)
+
 #Code Category
 class CodeCategoryAdmin(admin.ModelAdmin):
    date_hierarchy = 'CreatedDate'
@@ -44,11 +50,21 @@ class UserProfileAdmin(admin.ModelAdmin):
    list_display = ('Id', 'user', 'User_Type', 'Title','Company','Contact_Number','Rfq_Count','Quotation_Count')
    list_filter = ('Created_Date',)
 
+class BuyerAdmin(admin.ModelAdmin):
+   search_fields = ['User_Profile']
+   list_display = ('User_Profile', 'Rfq_Count', 'Total_Closed_Rfq_Count','Total_Withdraw_Rfq_Count','Total_Award_Rfq_Count')
+   list_filter = ('User_Profile',)
+
+class SupplierAdmin(admin.ModelAdmin):
+   search_fields = ['User_Profile']
+   list_display = ('User_Profile', 'MServiceTags', 'Total_SubmittedQuotes', 'Total_QuotesWon','Total_QuotesMissed')
+   list_filter = ('User_Profile',)
+
 admin.site.register(Document_Number)
-admin.site.register(Company)
+admin.site.register(Company, CompanyAdmin)
 admin.site.register(User_Profile, UserProfileAdmin)
-admin.site.register(Buyer)
-admin.site.register(Supplier)
+admin.site.register(Buyer, BuyerAdmin)
+admin.site.register(Supplier, SupplierAdmin)
 admin.site.register(Supplier_Service)
 admin.site.register(Supplier_Services_Profile)
 admin.site.register(Supplier_Service_Profile_Parameter)

@@ -23,6 +23,8 @@ from metal.views import user_view
 from metal.views import user_buyer_view
 from metal.views import user_supplier_view
 from metal.views import service_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -44,8 +46,9 @@ urlpatterns = [
     }, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete,
         name='password_reset_complete'),
-    url(r'^logout/$', public_view.sign_out, name="sign_out"),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name="sign_out"),
 
+    url(r'^upload/$', public_view.simple_upload, name="upload"),
     # Market App
     # http://localhost:8000/register/
     url(r'^register/$', user_view.registration_main, name="register_user_index"),
@@ -96,3 +99,6 @@ urlpatterns = [
     url(r'^supplier/service/(?P<service_id>[0-9]+)/$', service_view.get_service,
         name="user_supplier_service_by_id"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
