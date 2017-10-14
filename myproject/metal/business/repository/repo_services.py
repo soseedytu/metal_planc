@@ -6,7 +6,7 @@ class SupplierServiceRepository(object):
     def get_supplier_service_by_parent(self, parent_id):
         querySet = Supplier_Service.objects.filter(Parent_Service__Id__exact=parent_id)
         # print(querySet)
-        #result = querySet.values('Id', 'Service_Name')
+        #result = querySet.values('Id', 'Service_Name', 'Parent_Service__Id')
         # print(result)
         return querySet
 
