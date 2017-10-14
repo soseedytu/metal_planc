@@ -7,3 +7,7 @@ ul{
     vertical-align: middle !important;
     float: none !important;
 }
+
+.validationMessage{
+    color: red;
+}

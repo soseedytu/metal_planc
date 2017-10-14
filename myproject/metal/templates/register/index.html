@@ -3,7 +3,7 @@
 
 {% block main_content %}
 
-    <form name="registration" id="#registration-form" role="form" action="{% url 'register_user_index' %}" method="post">
+    <form name="registration" id="registration_form" role="form" action="{% url 'register_user_index' %}" method="post">
         {% csrf_token %}
 
         <div class="wizard">
@@ -68,59 +68,34 @@
                                         <div class="form-group">
                                             <label>Company Registration No. (UEN) <a>?</a> < *Add a link to
                                                 government website*</label>
-                                            <input id="txt_company_uen" name="company_uen" type="number" class="form-control"
+                                            <input id="txt_company_uen" name="company_uen" type="number"
+                                                   class="form-control"
+                                                   data-bind="value: company_uen, valueUpdate: 'blur'"
                                                    placeholder="Your Company UEN">
-                                            {% if BuyerVM.MCompany_Id.errors %}
-
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-hidden="true">×
-                                                    </button>
-                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                                    {{ BuyerVM.MCompany_Id.errors }}
-                                                </div>
-
-                                            {% endif %}
                                         </div>
 
                                         <div class="form-group">
                                             <label>Company Name</label>
-                                            <input id="txt_company_name" name="company_name" type="number" class="form-control"
+                                            <input id="txt_company_name" name="company_name" type="text"
+                                                   class="form-control"
+                                                   data-bind="value: company_name, valueUpdate: 'blur'"
                                                    placeholder="Your Company Name">
-                                            {% if BuyerVM.MCompany_Id.errors %}
-
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-hidden="true">×
-                                                    </button>
-                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                                    {{ BuyerVM.MCompany_Id.errors }}
-                                                </div>
-
-                                            {% endif %}
                                         </div>
 
                                         <div class="form-group">
                                             <label>Contact Number</label>
-                                            <input id="txt_contact_number" name="contact_number" type="text" class="form-control"
+                                            <input id="txt_contact_number" name="contact_number" type="text"
+                                                   class="form-control"
+                                                   data-bind="value: contact_number, valueUpdate: 'blur'"
                                                    placeholder="Number for suppliers to reach you">
-                                            {% if BuyerVM.ContactNumber.errors %}
-
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-hidden="true">×
-                                                    </button>
-                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                                    {{ BuyerVM.ContactNumber.errors }}
-                                                </div>
-
-                                            {% endif %}
                                         </div>
 
 
                                         <div id="selTags" class="form-group">
                                             <label>Tag</label>
-                                            <select class="form-control select2" multiple="multiple" style="width: 100%;">
+                                            <select class="form-control select2" multiple="multiple"
+                                                    style="width: 100%;"
+                                                    data-bind="value: tags, valueUpdate: 'blur'">
                                                 {% if tags %}
 
                                                     {% for tag in tags %}
@@ -140,74 +115,37 @@
                                             <label>Name</label>
 
                                             <input id="txt_user_name" name="user_name" type="text" class="form-control"
+                                                   data-bind="value: user_name, valueUpdate: 'blur'"
                                                    placeholder="Please enter your name">
-                                            {% if BuyerVM.Username.errors %}
-
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-hidden="true">×
-                                                    </button>
-                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                                    {{ BuyerVM.Username.errors }}
-                                                </div>
-
-                                            {% endif %}
                                         </div>
 
                                         <div class="form-group">
                                             <label>Job Title</label>
                                             <input id="txt_job_title" name="title" type="text" class="form-control"
+                                                   data-bind="value: title, valueUpdate: 'blur'"
                                                    placeholder="Your job title at your company">
-                                            {% if BuyerVM.Title.errors %}
-
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-hidden="true">×
-                                                    </button>
-                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                                    {{ BuyerVM.Title.errors }}
-                                                </div>
-
-                                            {% endif %}
                                         </div>
 
                                         <div class="form-group">
                                             <label>Email Address</label>
-                                            <input id="txt_email_addr" name="email_address" type="text" class="form-control"
+                                            <input id="txt_email_addr" name="email_address" type="text"
+                                                   class="form-control"
+                                                   data-bind="value: email_address, valueUpdate: 'blur'"
                                                    placeholder="Company email address">
-                                            {% if BuyerVM.EmailAddress.errors %}
-
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-hidden="true">×
-                                                    </button>
-                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                                    {{ BuyerVM.EmailAddress.errors }}
-                                                </div>
-
-                                            {% endif %}
                                         </div>
 
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input id="txt_password" name="password" type="password" class="form-control"
+                                            <input id="txt_password" name="password" type="password"
+                                                   class="form-control"
+                                                   data-bind="value: password, valueUpdate: 'blur'"
                                                    placeholder="Password to sign in later">
-                                            {% if BuyerVM.Password.errors %}
-
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-hidden="true">×
-                                                    </button>
-                                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                                    {{ BuyerVM.Password.errors }}
-                                                </div>
-
-                                            {% endif %}
                                         </div>
 
                                         <div class="form-group">
                                             <label>
                                                 <input id="chkRegisterAsSupplier" name="register_as_supplier"
+                                                       data-bind="checked: register_as_supplier"
                                                        type="checkbox">
                                                 &nbsp;Please register me as a supplier
                                             </label>
@@ -225,7 +163,9 @@
                         <li>
                             <button id="btnNext" type="button" class="btn btn-primary next-step">Save and continue
                             </button>
-                            <button id="btnSubmit" type="button" class="btn btn-primary next-step btnSubmit">Register</button>
+                            <button id="btnSubmit" type="button" data-issubmitbutton="1"
+                                    class="btn btn-primary next-step btnSubmit">Register
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -237,12 +177,14 @@
 
                         <div class="box box-solid box-default">
                             <div class="box-body">
+
                                 {% if root_services %}
 
                                     {% for service in root_services %}
                                         <div class="form-group">
                                             <label>
-                                                <input class="chk_service" data-thistext="{{ service.Service_Name }}"
+                                                <input class="chk_service"
+                                                       data-thistext="{{ service.Service_Name }}"
                                                        data-parenttext=""
                                                        data-renderin="step3_list"
                                                        data-step="2"
@@ -304,7 +246,9 @@
                             <button type="button" class="btn btn-default prev-step">Previous</button>
                         </li>
                         <li>
-                            <button id="btnSubmit2" type="button" class="btn btn-primary next-step btnSubmit">Register</button>
+                            <button id="btnSubmit2" type="button" data-issubmitbutton="1"
+                                    class="btn btn-primary next-step btnSubmit">Register
+                            </button>
                         </li>
                     </ul>
                 </div>

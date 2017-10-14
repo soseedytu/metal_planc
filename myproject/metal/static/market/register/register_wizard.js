@@ -1,4 +1,40 @@
+var vmRegistration = ko.validatedObservable({
+
+    company_uen: ko.observable('').extend({ required: true, number: true}), // txt_company_uen
+    company_name: ko.observable('').extend({ required: true }), // txt_company_name
+    contact_number: ko.observable('').extend({ required: true }), // txt_contact_number
+    tags: ko.observable('').extend({ required: true }), //
+    user_name: ko.observable('').extend({ required: true }), // txt_user_name
+    title: ko.observable('').extend({ required: true }), // txt_job_title
+    email_address: ko.observable('').extend({ required: true, email: true }), // txt_email_addr
+    password: ko.observable('').extend({ required: true }), // txt_password
+    services: ko.observable('').extend({ required: true }), //
+    register_as_supplier: ko.observable('')
+
+});
+
+var vmLevel1Elements = function(){
+    this.service_Id = ko.observable('');
+    this.service_Name = ko.observable('');
+    this.parent_Id = ko.observable('');
+    this.level = ko.observable(0);
+
+    // Whenever the category changes, reset the product selection
+    this.service_Id.subscribe(function() {
+        self.product(undefined);
+    });
+};
+
 $(document).ready(function () {
+    // enable validation
+    ko.validation.init();
+    // bind view model to form
+    ko.applyBindings(vmRegistration);
+
+    // show all error messages
+    var result = ko.validation.group(vmRegistration, {deep: true});
+    vmRegistration.isValid();
+    result.showAllMessages(true);
 
     hideSupplierSteps();
 
@@ -30,16 +66,13 @@ $(document).ready(function () {
 
     $(".next-step").click(function (e) {
 
-        var $active = $('.wizard .nav-tabs li.active');
+        register_form_validation();
 
-        if (isRegisterAsSupplier) {
-            $active.next().removeClass('disabled');
-            nextTab($active);
-        }
-        else {
-            $active.parent().children().last().removeClass('disabled');
-            lastTab($active);
-        }
+        var isSubmitButton = $(this).data('issubmitbutton');
+
+        if (isSubmitButton == 1) return false;
+
+        showNextStep();
 
     });
     $(".prev-step").click(function (e) {
@@ -68,9 +101,26 @@ $(document).ready(function () {
         console.log("form submitted!")  // sanity check
         register_user($(this));
     });
+
+
+    // register validation
+    register_form_validation();
 });
 
 var isRegisterAsSupplier = false;
+
+function showNextStep() {
+    var $active = $('.wizard .nav-tabs li.active');
+
+    if (isRegisterAsSupplier) {
+        $active.next().removeClass('disabled');
+        nextTab($active);
+    }
+    else {
+        $active.parent().children().last().removeClass('disabled');
+        lastTab($active);
+    }
+}
 
 function hideSupplierSteps() {
 
@@ -122,9 +172,25 @@ function lastTab(elem) {
 function register_user(form) {
     console.log("create post is working!") // sanity check
 
+    var isValid = vmRegistration.isValid();
+
+    if(isValid == false)
+    {
+        alert('Please fix errors in registration data.')
+        return false;
+    }
+
     // Collect Data
     var data = collect_form_data()
     console.log(data);
+
+
+    var result = register_form_validation(); //validate_form();
+
+
+    console.log(result);
+
+    //showNextStep();
 
     // remove after testing data collection
     return false;
@@ -243,13 +309,13 @@ function update_destination_element(elementId, json, parentText, thisText, thisS
             'value="' + element.Id + '" /> ' +
             element.Service_Name;
 
-        if(element.Parent_Service__Id != undefined && nextStep == 4 ){
+        if (element.Parent_Service__Id != undefined && nextStep == 4) {
             var startRow = "<div class='row'>";
             var endRow = "</div>";
 
-            var widthCtl = "<div class='col-md-3'><label>supported width</label><input type='input' placeholder='min width' title='Please provide min width that you can support.' /><input type='input' placeholder='max width' title='Please provide max width that you can support.' /></div>";
-            var heightCtl = "<div class='col-md-3'><label>supported height</label><input type='input' placeholder='min height' title='Please provide min height that you can support.' /><input type='input' placeholder='max height' title='Please provide max height that you can support.'  /></div>";
-            var thicknessCtl = "<div class='col-md-3'><label>supported thickness</label><input type='input' placeholder='min thickness' title='Please provide min thickness that you can support.' /><input type='input' placeholder='max thickness' title='Please provide max thickness that you can support.' /></div>";
+            var widthCtl = "<div class='col-md-3'><label>supported width</label><input id='txt_min_width_" + element.Id + "' type='input' placeholder='min width' title='Please provide min width that you can support.' /><input id='txt_max_width_" + element.Id + "' type='input' placeholder='max width' title='Please provide max width that you can support.' /></div>";
+            var heightCtl = "<div class='col-md-3'><label>supported height</label><input id='txt_min_height_" + element.Id + "' type='input' placeholder='min height' title='Please provide min height that you can support.' /><input id='txt_max_height_" + element.Id + "' type='input' placeholder='max height' title='Please provide max height that you can support.'  /></div>";
+            var thicknessCtl = "<div class='col-md-3'><label>supported thickness</label><input id='txt_min_thickness_" + element.Id + "' type='input' placeholder='min thickness' title='Please provide min thickness that you can support.' /><input id='txt_max_thickness_" + element.Id + "' type='input' placeholder='max thickness' title='Please provide max thickness that you can support.' /></div>";
 
             checkboxElement = "<div class='col-md-3'>" + checkboxElement + "</div>";
             checkboxElement = startRow + checkboxElement;
@@ -272,25 +338,44 @@ function update_destination_element(elementId, json, parentText, thisText, thisS
 
 function collect_form_data() {
 
-    var data = {};
+    var data = ko.toJS(vmRegistration);
 
-    data.company_uen = ''; // txt_company_uen
-    data.company_name = ''; // txt_company_name
-    data.contact_number = ''; // txt_contact_number
+    // data.company_uen = ''; // txt_company_uen
+    // data.company_name = ''; // txt_company_name
+    // data.contact_number = ''; // txt_contact_number
     data.tags = $(".select2").val(); //
-    data.user_name = ''; // txt_user_name
-    data.job_title = ''; // txt_job_title
-    data.email_address = ''; // txt_email_addr
-    data.password = ''; // txt_password
+    // data.user_name = ''; // txt_user_name
+    // data.job_title = ''; // txt_job_title
+    // data.email_address = ''; // txt_email_addr
+    // data.password = ''; // txt_password
     data.services = []; //
-    data.register_as_supplier = $('#chkRegisterAsSupplier').prop('checked');
+    // data.register_as_supplier = $('#chkRegisterAsSupplier').prop('checked');
 
     var step4_checkboxes = $('*[data-step="4"]');
 
     step4_checkboxes.each(function (i, element) {
 
         if (element.checked) {
-            data.services.push(element.value);
+            var id = element.value;
+
+            var minWidth = $('#txt_min_width_' + id).val();
+            var minHeight = $('#txt_min_height_' + id).val();
+            var minThickness = $('#txt_min_thickness_' + id).val();
+            var maxWidth = $('#txt_max_width_' + id).val();
+            var maxHeight = $('#txt_max_height_' + id).val();
+            var maxThickness = $('#txt_max_thickness_' + id).val();
+
+            var supplier_svs = {
+                service_id: id,
+                min_width: minWidth,
+                min_height: minHeight,
+                min_thickness: minThickness,
+                max_width: maxWidth,
+                max_height: maxHeight,
+                max_thickness: maxThickness,
+            };
+
+            data.services.push(supplier_svs);
         }
 
     });
@@ -299,54 +384,7 @@ function collect_form_data() {
 
 }
 
-function validate_form() {
-    $("form[name='registration']").validate()
-}
-
-function register_form_validation(){
-    $("form[name='registration']").validate({
-        // Specify validation rules
-        rules: {
-            // The key name on the left side is the name attribute
-            // of an input field. Validation rules are defined
-            // on the right side
-            company_uen: "required",
-            company_name: "required",
-            contact_number: "required",
-            user_name: "required",
-            title: "required",
-            user_name: "required",
-            title: "required",
-            email_address: {
-                required: true,
-                // Specify that email should be validated
-                // by the built-in "email" rule
-                email: true
-            },
-            password: {
-                required: true,
-                minlength: 5
-            }
-        },
-        // Specify validation error messages
-        messages: {
-            company_uen: "required",
-            company_name: "required",
-            contact_number: "required",
-            user_name: "required",
-            title: "required",
-            user_name: "required",
-            title: "required",
-            password: {
-                required: "required",
-                minlength: "Your password must be at least 5 characters long"
-            },
-            email: "Please enter a valid email address"
-        },
-        // Make sure the form is submitted to the destination defined
-        // in the "action" attribute of the form when valid
-        submitHandler: function (form) {
-            form.submit();
-        }
-    });
+function register_form_validation() {
+    console.log(ko.toJS(vmRegistration));
+    return vmRegistration.isValid();
 }
