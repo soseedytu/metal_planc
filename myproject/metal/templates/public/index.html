@@ -78,9 +78,7 @@
                     <p class="form-title">
                         or, Sign In</p>
                     <form name="loginform" id="loginform" class="login" action="{% url 'auth_login' %}"  method="post" >
-
                       {% csrf_token %}
-
                       <input type="text" placeholder="EmailAddress" name="EmailAddress"/>
                       <input type="password" placeholder="Password" name="Password"/>
                       <input id="btnSigIn" type="submit" value="Sign In" class="btn btn-success btn-sm" />
