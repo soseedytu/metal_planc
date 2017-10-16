@@ -3,13 +3,13 @@ var vmRegistration = ko.validatedObservable({
     company_uen: ko.observable('').extend({ required: true, number: true}), // txt_company_uen
     company_name: ko.observable('').extend({ required: true }), // txt_company_name
     contact_number: ko.observable('').extend({ required: true }), // txt_contact_number
-    tags: ko.observable('').extend({ required: true }), //
+    tags: ko.observable([]).extend({ required: false }), //
     user_name: ko.observable('').extend({ required: true }), // txt_user_name
     title: ko.observable('').extend({ required: true }), // txt_job_title
     email_address: ko.observable('').extend({ required: true, email: true }), // txt_email_addr
     password: ko.observable('').extend({ required: true }), // txt_password
-    services: ko.observable('').extend({ required: true }), //
-    register_as_supplier: ko.observable('')
+    services: ko.observable([]).extend({ required: false }), //
+    register_as_supplier: ko.observable(false)
 
 });
 
@@ -172,6 +172,15 @@ function lastTab(elem) {
 function register_user(form) {
     console.log("create post is working!") // sanity check
 
+    // Collect Data
+    var data = collect_form_data()
+    console.log(data);
+
+    var result = register_form_validation(); //validate_form();
+
+    console.log(result);
+
+
     var isValid = vmRegistration.isValid();
 
     if(isValid == false)
@@ -180,32 +189,16 @@ function register_user(form) {
         return false;
     }
 
-    // Collect Data
-    var data = collect_form_data()
-    console.log(data);
+    showNextStep();
 
-
-    var result = register_form_validation(); //validate_form();
-
-
-    console.log(result);
-
-    //showNextStep();
-
-    // remove after testing data collection
-    return false;
-
-    var frmData = {
-        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(), // essential data
-        the_post: $('#post-text').val()
-    };
+    data.csrfmiddlewaretoken =  $('input[name=csrfmiddlewaretoken]').val();
 
     // Save
 
     $.ajax({
         url: form.prop('action'), // the endpoint
         type: "POST", // http method
-        data: frmData, // data sent with the post request
+        data: data, // data sent with the post request
 
         // handle a successful response
         success: function (json) {
