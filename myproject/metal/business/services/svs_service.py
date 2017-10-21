@@ -21,10 +21,10 @@ class SupplierService(object):
         if(selected_service_array is None):
             return result;
 
-        service_id_array = {}
+        service_id_array = []
         i = 0
         for selected_service in selected_service_array:
-            service_id_array[i] = selected_service["service_id"]
+            service_id_array.insert(i, selected_service["service_id"])
             i = i + 1
 
         repo = SupplierServiceRepository()

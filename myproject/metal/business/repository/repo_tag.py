@@ -7,15 +7,15 @@ class TagRepository(object):
         return querySet
 
     def get_tags_by_id_arrary(self, tag_ids):
-        queries = {}
-        for tag_id in tag_ids:
-            key = '{0}__{1}'.format('Id', 'exact')
-            queries[key] = tag_id
+        # queries = {}
+        # for tag_id in tag_ids:
+        #     key = '{0}__{1}'.format('Id', 'exact')
+        #     queries[key] = tag_id
+        #
+        # query = queries.pop
+        # for item in queries:
+        #     query |= item
 
-        query = queries.pop
-        for item in queries:
-            query |= item
-
-        querySet = Tag.objects.filter(query)
+        querySet = Tag.objects.filter(Id__in=tag_ids)
 
         return querySet

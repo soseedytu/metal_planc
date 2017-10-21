@@ -50,13 +50,15 @@ class UserService(object):
         elif(user_type == Constants.code_usertype_supplier):
 
             ## collect tags
-            tags_arrary = Functions.convert_json_string_to_dict(new_user_object['tags_text'])
+            common_func = Functions()
+            tags_arrary = common_func.convert_json_string_to_dict(new_user_object['tags_text'])
             tag_svs = TagService()
             tags = tag_svs.get_tags_text_from_arrary(tags_arrary)
 
             ## collect services
-            selected_services_arrary = Functions.convert_json_string_to_dict(new_user_object['services_text'])
-            selected_supplier_services = SupplierService.get_supplier_service_by_selected_service_array(selected_services_arrary)
+            selected_services_arrary = common_func.convert_json_string_to_dict(new_user_object['services_text'])
+            supplier_svs = SupplierService()
+            selected_supplier_services = supplier_svs.get_supplier_service_by_selected_service_array(selected_services_arrary)
 
 
             ## save in supplier repository

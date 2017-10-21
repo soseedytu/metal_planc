@@ -15,7 +15,13 @@ class TagService(object):
         if(tags is None):
             return result
 
-        for tag in tags:
+        repo = TagRepository()
+        tag_objects = repo.get_tags_by_id_arrary(tags)
+
+        if (tag_objects is None):
+            return result
+
+        for tag in tag_objects:
             if(result is not ""):
                 result = result + ";"
 

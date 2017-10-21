@@ -3,5 +3,8 @@ import json
 
 class Functions:
 
-    def convert_json_string_to_dict(self, arrary_obj):
-        return json.loads(arrary_obj)
+    def convert_json_string_to_dict(self, array_obj):
+
+        if(array_obj is None): return None
+
+        return json.loads(array_obj)

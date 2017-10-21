@@ -18,15 +18,15 @@ class SupplierServiceRepository(object):
         return querySet
 
     def get_services_by_id_arrary(self, service_ids):
-        queries = {}
-        for tag_id in service_ids:
-            key = '{0}__{1}'.format('Id', 'exact')
-            queries[key] = tag_id
+        # queries = {}
+        # for tag_id in service_ids:
+        #     key = '{0}__{1}'.format('Id', 'exact')
+        #     queries[key] = tag_id
+        #
+        # query = queries.pop
+        # for item in queries:
+        #     query |= item
 
-        query = queries.pop
-        for item in queries:
-            query |= item
-
-        querySet = Supplier_Service.objects.filter(query)
+        querySet = Supplier_Service.objects.filter(Id__in=service_ids)
 
         return querySet
