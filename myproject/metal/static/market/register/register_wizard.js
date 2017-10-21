@@ -189,6 +189,8 @@ function register_user(form) {
         return false;
     }
 
+    $('#status_title').html('Registration in Progress')
+    $('#status_message').html('Please wait...')
     showNextStep();
 
     data.csrfmiddlewaretoken =  $('input[name=csrfmiddlewaretoken]').val();
@@ -202,7 +204,16 @@ function register_user(form) {
 
         // handle a successful response
         success: function (json) {
-            // remove the value from the input
+            // {"result": "success",
+            // "errors": "",
+            // "user_info": {"company_uen": "12345",
+            // "company_name": "vacker tech", "contact_number": "65 12345678", "tags": "",
+            // "user_name": "Soe San Win", "title": "Director", "email_address": "ssw@vackertech.com",
+            // "services": "", "register_as_supplier": "false",
+            // "user_password": "pass123", "user_id": 3, "user_profile_id": 7}}
+
+            $('#status_title').html('Registration completed')
+            $('#status_message').html('Thanks you, '+ json.user_info.user_name +', for your registration.')
 
             // move to last anchor
             $('#completeAnchor').removeClass('disabled');
@@ -214,7 +225,8 @@ function register_user(form) {
 
         // handle a non-successful response
         error: function (xhr, errmsg, err) {
-            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg +
+            $('#status_title').html('Oops. Something went wrong.')
+            $('#status_message').html("<div class='alert-box alert radius' data-alert>" + errmsg +
                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
         }

@@ -15,6 +15,7 @@ def registration_main(request):
         form = RegistrationForm(request.POST)
         reg_result = 'success'
         errors = ''
+        user_create_result = None
 
         if(form.is_valid() == False):
             reg_result = 'failed'
@@ -30,7 +31,8 @@ def registration_main(request):
 
         reg_result = {
             'result': reg_result,
-            'errors': errors
+            'errors': errors,
+            'user_info': user_create_result
         }
         return HttpResponse(json.dumps(reg_result), content_type="application/json")
     else:

@@ -51,5 +51,8 @@ class UserService(object):
 
         ## finally commit transaction
         user_repo.commit_transaction()
-        return 1
+        new_user_object["user_id"] = user_profile.Id
+        new_user_object["user_profile_id"] = user_profile.user_id
+        new_user_object["user_password"] = None
+        return new_user_object
 
