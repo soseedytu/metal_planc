@@ -3,7 +3,10 @@ from metal.business.repository.repo_user import UserRepository
 from metal.business.repository.repo_code import CodeTableRepository
 from metal.business.repository.repo_buyer import BuyerRepository
 from metal.business.repository.repo_supplier import SupplierRepository
+from metal.business.services.svs_tag import TagService
+from metal.business.services.svs_service import SupplierService
 from metal.business.common.constants import Constants
+from metal.business.common.functions import Functions
 
 
 class UserService(object):
@@ -40,12 +43,28 @@ class UserService(object):
         ## create specific user type
         user_details = None
         if(user_type == Constants.code_usertype_buyer):
+
             buyer_repo = BuyerRepository()
             user_details = buyer_repo.register_buyer(user_profile)
+
         elif(user_type == Constants.code_usertype_supplier):
+
+            ## collect tags
+            tags_arrary = Functions.convert_json_string_to_dict(new_user_object['tags_text'])
+            tag_svs = TagService()
+            tags = tag_svs.get_tags_text_from_arrary(tags_arrary)
+
+            ## collect services
+            selected_services_arrary = Functions.convert_json_string_to_dict(new_user_object['services_text'])
+            selected_supplier_services = SupplierService.get_supplier_service_by_selected_service_array(selected_services_arrary)
+
+
+            ## save in supplier repository
             supplier_repo = SupplierRepository()
-            user_details = supplier_repo.register_supplier(user_profile, new_user_object['tags'])
+            user_details = supplier_repo.register_supplier(user_profile, tags)
+
         else:
+
             user_repo.rollback_transaction()
             return -1
 
@@ -55,4 +74,5 @@ class UserService(object):
         new_user_object["user_profile_id"] = user_profile.user_id
         new_user_object["user_password"] = None
         return new_user_object
+
 

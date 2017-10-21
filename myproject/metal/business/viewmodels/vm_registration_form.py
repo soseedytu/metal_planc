@@ -13,6 +13,8 @@ class RegistrationForm(forms.Form):
     user_password = forms.PasswordInput()
     services = forms.CharField(required=False)
     register_as_supplier = forms.CharField()
+    tags_text = forms.CharField(required=False)
+    services_text = forms.CharField(required=False)
 
     #def clean(self):
         #password = self.cleaned_data.get("user_password")

@@ -3,12 +3,14 @@ var vmRegistration = ko.validatedObservable({
     company_uen: ko.observable('').extend({ required: true, number: true}), // txt_company_uen
     company_name: ko.observable('').extend({ required: true }), // txt_company_name
     contact_number: ko.observable('').extend({ required: true }), // txt_contact_number
-    tags: ko.observable([]).extend({ required: false }), //
+    tags: ko.observable('').extend({ required: false }), //
     user_name: ko.observable('').extend({ required: true }), // txt_user_name
     title: ko.observable('').extend({ required: true }), // txt_job_title
     email_address: ko.observable('').extend({ required: true, email: true }), // txt_email_addr
     user_password: ko.observable('').extend({ required: true }), // txt_password
     services: ko.observable([]).extend({ required: false }), //
+    services_text: ko.observable('').extend({ required: false }), //
+    tags_text: ko.observable('').extend({ required: false }), //
     register_as_supplier: ko.observable(false)
 
 });
@@ -98,7 +100,7 @@ $(document).ready(function () {
     // Submit post on submit
     $('.btnSubmit').on('click', function (event) {
         event.preventDefault();
-        console.log("form submitted!")  // sanity check
+        //console.log("form submitted!")  // sanity check
         register_user($(this));
     });
 
@@ -179,7 +181,6 @@ function register_user(form) {
     var result = register_form_validation(); //validate_form();
 
     console.log(result);
-
 
     var isValid = vmRegistration.isValid();
 
@@ -348,11 +349,11 @@ function collect_form_data() {
     // data.company_uen = ''; // txt_company_uen
     // data.company_name = ''; // txt_company_name
     // data.contact_number = ''; // txt_contact_number
-    data.tags = $(".select2").val(); //
     // data.user_name = ''; // txt_user_name
     // data.job_title = ''; // txt_job_title
     // data.email_address = ''; // txt_email_addr
     // data.password = ''; // txt_password
+    data.tags = $(".select2").val(); //
     data.services = []; //
     // data.register_as_supplier = $('#chkRegisterAsSupplier').prop('checked');
 
@@ -385,11 +386,14 @@ function collect_form_data() {
 
     });
 
+    data.services_text = JSON.stringify(data.services);
+    data.tags_text = JSON.stringify(data.tags);
+
     return data;
 
 }
 
 function register_form_validation() {
-    console.log(ko.toJS(vmRegistration));
+    //console.log(ko.toJS(vmRegistration));
     return vmRegistration.isValid();
 }

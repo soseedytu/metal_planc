@@ -14,3 +14,20 @@ class SupplierService(object):
         queryset = repo.get_supplier_service_all()
         result = queryset.values('Id', 'Service_Name')
         return result
+
+    def get_supplier_service_by_selected_service_array(self, selected_service_array):
+        result = None
+
+        if(selected_service_array is None):
+            return result;
+
+        service_id_array = {}
+        i = 0
+        for selected_service in selected_service_array:
+            service_id_array[i] = selected_service["service_id"]
+            i = i + 1
+
+        repo = SupplierServiceRepository()
+        result = repo.get_services_by_id_arrary(service_id_array)
+
+        return result

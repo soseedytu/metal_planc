@@ -105,7 +105,7 @@ class Supplier_Service_Profile_Parameter(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
     Parameter_Name = models.CharField(max_length=45, null=True)
     Parameter_Default_Values = models.CharField(max_length=15, null=True)
-    Supplier_Service = models.ForeignKey(Supplier_Service, db_index=True)
+    Supplier_Service = models.ForeignKey(Supplier_Services_Profile, db_index=True)
     Uom = models.CharField(max_length=10, null=True)
     Status = models.IntegerField(null=True)
     Version = models.DateTimeField(null=True)
