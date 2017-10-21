@@ -41,7 +41,7 @@ class CodeCategoryAdmin(admin.ModelAdmin):
 class CodeTableAdmin(admin.ModelAdmin):
    date_hierarchy = 'CreatedDate'
    search_fields = ['Name', 'Description', 'Status']
-   list_display = ('Id','Name', 'Description', 'Code_Category', 'CreatedDate', 'Status')
+   list_display = ('Id', 'Name', 'Description', 'Category_Code', 'CreatedDate', 'Status')
    list_filter = ('CreatedDate',)
 
 class UserProfileAdmin(admin.ModelAdmin):
