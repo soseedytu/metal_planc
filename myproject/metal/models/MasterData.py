@@ -36,7 +36,7 @@ class User_Profile(models.Model):
     Rfq_Count = models.IntegerField(default=0)
     Quotation_Count = models.IntegerField(default=0)
     Version = models.DateTimeField(null=True)
-    Title = models.CharField(max_length=5)
+    Title = models.CharField(max_length=45)
     Contact_Number = models.CharField(max_length=45)
     Company = models.ForeignKey(Company, db_index=True, null=True)
     Created_Date = models.DateTimeField(auto_now_add=True, null=False)

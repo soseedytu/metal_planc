@@ -10,14 +10,13 @@ class RegistrationForm(forms.Form):
     user_name = forms.CharField(max_length=50)
     title = forms.CharField(max_length=50)
     email_address = forms.CharField(max_length=50)
-    password = forms.PasswordInput()
+    user_password = forms.PasswordInput()
     services = forms.CharField(required=False)
     register_as_supplier = forms.CharField()
 
     #def clean(self):
-
+        #password = self.cleaned_data.get("user_password")
         # email = self.cleaned_data.get("EmailAddress")
-        # upass = self.cleaned_data.get("Password")
         # print("password")
         # print(upass)
         # auth_user = User.objects.filter(username=email)

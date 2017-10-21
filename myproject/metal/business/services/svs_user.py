@@ -50,6 +50,6 @@ class UserService(object):
             return -1
 
         ## finally commit transaction
-        user_repo.rollback_transaction()
+        user_repo.commit_transaction()
         return 1
 

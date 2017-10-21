@@ -21,7 +21,9 @@ def registration_main(request):
             errors = form.errors
         else:
             user_svs = UserService()
-            user_create_result = user_svs.register_user(form.cleaned_data)
+            user_details = form.cleaned_data
+            user_details["user_password"] = request.POST['user_password']
+            user_create_result = user_svs.register_user(user_details)
 
         # print(form.cleaned_data)
         # print(form.is_valid())

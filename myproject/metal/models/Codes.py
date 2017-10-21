@@ -27,7 +27,7 @@ class Code_Table(models.Model):
     ModifiedDate = models.DateTimeField(auto_now_add=True, null=False)
     ModifiedBy = models.CharField(max_length=45, null=False)
     Status = models.IntegerField(null=False)
-    Category_Code = models.CharField(max_length=45, unique=True, db_index=True, default="NIL")
+    Category_Code = models.CharField(max_length=45, unique=False, db_index=True, default="NIL")
     Parent_Code = models.ForeignKey('self', db_index=True, null=True, blank=True)
     Version = models.DateTimeField(auto_now_add=True, null=True)
 

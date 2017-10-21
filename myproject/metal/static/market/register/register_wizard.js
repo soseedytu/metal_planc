@@ -7,7 +7,7 @@ var vmRegistration = ko.validatedObservable({
     user_name: ko.observable('').extend({ required: true }), // txt_user_name
     title: ko.observable('').extend({ required: true }), // txt_job_title
     email_address: ko.observable('').extend({ required: true, email: true }), // txt_email_addr
-    password: ko.observable('').extend({ required: true }), // txt_password
+    user_password: ko.observable('').extend({ required: true }), // txt_password
     services: ko.observable([]).extend({ required: false }), //
     register_as_supplier: ko.observable(false)
 

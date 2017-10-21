@@ -1,6 +1,4 @@
 from django import forms
-from metal.models.MasterData import User_Profile
-from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
@@ -14,7 +12,6 @@ class LoginForm(forms.Form):
         print("password")
         print(upass)
         auth_user = User.objects.filter(username=email)
-        #user = MUser.objects.get(EmailAddress=email)
         print(auth_user)
         if auth_user is None:
             print("error!")

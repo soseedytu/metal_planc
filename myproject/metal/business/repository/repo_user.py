@@ -1,16 +1,21 @@
 from metal.models.MasterData import User_Profile
 from metal.business.repository.repo_base import BaseRepository
 from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import User
 from datetime import datetime
 
 
 class UserRepository(BaseRepository):
     def create_django_user(self, new_user_object):
         user_Mgr = UserManager()
-        django_user = user_Mgr.create_user(
-            new_user_object['user_name'],
-            new_user_object['email_address'],
-            new_user_object['password'])
+        username = new_user_object['user_name']
+        email = new_user_object['email_address']
+        password = new_user_object['user_password']
+        email = user_Mgr.normalize_email(email)
+        django_user = User.objects.create_user(
+            username,
+            email,
+            password)
         return django_user
 
     def register_user(self, new_user_object, user_type_code, company_obj, django_user):
