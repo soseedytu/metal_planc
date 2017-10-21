@@ -15,6 +15,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 
+
 def index(request):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     print('-----------')

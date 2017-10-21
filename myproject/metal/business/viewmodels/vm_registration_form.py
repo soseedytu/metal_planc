@@ -6,12 +6,12 @@ class RegistrationForm(forms.Form):
     company_uen = forms.CharField(max_length=50)
     company_name = forms.CharField(max_length=50)
     contact_number = forms.CharField(max_length=50)
-    tags = forms.MultiValueField(required=False)
+    tags = forms.CharField(required=False)
     user_name = forms.CharField(max_length=50)
     title = forms.CharField(max_length=50)
     email_address = forms.CharField(max_length=50)
     password = forms.PasswordInput()
-    services = forms.TypedMultipleChoiceField(required=False)
+    services = forms.CharField(required=False)
     register_as_supplier = forms.CharField()
 
     #def clean(self):

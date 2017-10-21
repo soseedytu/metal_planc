@@ -17,11 +17,13 @@ class Document_Number(models.Model):
 
 class Company(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
+    Uen = models.IntegerField(null=True, unique=True)
     Name = models.CharField(max_length=45, null=False)
-    Address = models.CharField(max_length=200, null=False)
-    Domain = models.CharField(max_length=45, null=False)
-    Reg_No = models.CharField(max_length=45, null=False)
-    Unique_Code = models.CharField(max_length=45, null=False)
+    Address = models.CharField(max_length=200, null=True)
+    Domain = models.CharField(max_length=45, null=True)
+    Reg_No = models.CharField(max_length=45, null=True)
+    Contact_No = models.CharField(max_length=45, null=True)
+    Unique_Code = models.CharField(max_length=45, null=True)
 
     def __str__(self):
         return self.Name
@@ -60,7 +62,7 @@ class Buyer(models.Model):
 
 class Supplier(models.Model):
     User_Profile = models.OneToOneField(User_Profile, primary_key=True, db_index=True)
-    MServiceTags = models.CharField(max_length=400)
+    MServiceTags = models.CharField(max_length=400, null=True)
     Total_SubmittedQuotes = models.IntegerField(default=0)
     Total_QuotesWon = models.IntegerField(default=0)
     Total_QuotesMissed = models.IntegerField(default=0)

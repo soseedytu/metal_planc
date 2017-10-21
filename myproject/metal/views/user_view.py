@@ -5,6 +5,7 @@ from django.shortcuts import render
 from metal.business.viewmodels.vm_registration_form import RegistrationForm
 from metal.business.services.svs_service import SupplierService
 from metal.business.services.svs_tag import TagService
+from metal.business.services.svs_user import UserService
 
 app_label = 'metal'
 
@@ -18,9 +19,12 @@ def registration_main(request):
         if(form.is_valid() == False):
             reg_result = 'failed'
             errors = form.errors
+        else:
+            user_svs = UserService()
+            user_create_result = user_svs.register_user(form.cleaned_data)
 
-        print(form.cleaned_data)
-        print(form.is_valid())
+        # print(form.cleaned_data)
+        # print(form.is_valid())
 
         reg_result = {
             'result': reg_result,
