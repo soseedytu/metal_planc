@@ -102,9 +102,23 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-12">
-                    <button type="button" class="btn btn-sm btn-info" value="+ Attach file">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                         <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" class="form-control-file" name="myfile" aria-describedby="fileHelp">
+                          </div>
+                        <button type="submit"class="btn btn-sm btn-info" value="+ Attach file">
                         + Add File Attachment
                     </button>
+                    </form>
+
+                      {% if uploaded_file_url %}
+                        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+                      {% endif %}
+                    <!--<button type="button" class="btn btn-sm btn-info" value="+ Attach file">
+                        + Add File Attachment
+                    </button> -->
                 </div>
             </div>
         </div>

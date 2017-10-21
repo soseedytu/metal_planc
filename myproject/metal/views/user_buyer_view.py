@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.files.storage import FileSystemStorage
 
 app_label = 'metal'
 
@@ -15,11 +16,18 @@ def timeline(request):
 
 # list RFQ
 def rfqs(request):
+
     return render(request, 'user_buyer/rfq_list.html')
 
 
 # create/update RFQ
 def rfq(request, rfq_id):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        return render(request, 'user_buyer/rfq_edit.html', {'uploaded_file_url': uploaded_file_url})
     return render(request, 'user_buyer/rfq_edit.html')
 
 

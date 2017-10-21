@@ -48,7 +48,7 @@ urlpatterns = [
         name='password_reset_complete'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name="sign_out"),
 
-    url(r'^upload/$', public_view.simple_upload, name="upload"),
+    #url(r'^upload/$', public_view.simple_upload, name="upload"),
     # Market App
     # http://localhost:8000/register/
     url(r'^register/$', user_view.registration_main, name="register_user_index"),

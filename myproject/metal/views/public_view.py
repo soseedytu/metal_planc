@@ -13,7 +13,7 @@ from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.urls import reverse
-from django.core.files.storage import FileSystemStorage
+
 
 
 def index(request):
@@ -101,12 +101,3 @@ def login(request):
 def sign_out(request):
     print('Sign Out Started')
     return HttpResponseRedirect(reverse('public_index'))
-
-def simple_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'market/simple_upload.html', {'uploaded_file_url': uploaded_file_url})
-    return render(request, 'market/simple_upload.html')

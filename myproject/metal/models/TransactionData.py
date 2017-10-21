@@ -66,6 +66,7 @@ class Document_File_Attachment(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
     Document = models.ForeignKey(Document, db_index=True)
     FileName = models.CharField(max_length=150, null=False)
+    Document_File = models.FileField(upload_to='documents/')
     FileBinary = models.BinaryField(null=False)
     Created_Date = models.DateTimeField(auto_now_add=True, null=False)
     Created_By = models.CharField(max_length=45, null=False, default="admin")
