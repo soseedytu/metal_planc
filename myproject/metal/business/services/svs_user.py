@@ -3,6 +3,7 @@ from metal.business.repository.repo_user import UserRepository
 from metal.business.repository.repo_code import CodeTableRepository
 from metal.business.repository.repo_buyer import BuyerRepository
 from metal.business.repository.repo_supplier import SupplierRepository
+from metal.business.repository.repo_supplier_service import SupplierServiceProfileRepository
 from metal.business.services.svs_tag import TagService
 from metal.business.services.svs_service import SupplierService
 from metal.business.common.constants import Constants
@@ -60,6 +61,13 @@ class UserService(object):
             supplier_svs = SupplierService()
             selected_supplier_services = supplier_svs.get_supplier_service_by_selected_service_array(selected_services_arrary)
 
+            ## save supplier service profile and its parameters
+            profile_repo = SupplierServiceProfileRepository()
+            for service_profile in selected_supplier_services:
+                saved_serviced_profile = profile_repo.create_supplier_service_profile(service_profile, company_profile)
+
+                for service_param in selected_services_arrary:
+                    saved_serviced_profile_param = profile_repo.create_supplier_service_profile_param(saved_serviced_profile, service_param)
 
             ## save in supplier repository
             supplier_repo = SupplierRepository()
