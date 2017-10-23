@@ -1,13 +1,15 @@
+import asyncio
 from metal.business.repository.repo_tag import TagRepository
 
 
 class TagService(object):
 
-    def get_tags_all(self):
+    async def get_tags_all(self, future):
         repo = TagRepository()
         queryset = repo.get_tags_all()
         result = queryset.values('Id', 'TagName')
-        return result
+        future.set_result(result)
+        #return result
 
     def get_tags_text_from_arrary(self, tags):
         result = ""
