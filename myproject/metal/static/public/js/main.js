@@ -75,7 +75,7 @@ function main() {
     $(window).load(function() {
         var $container = $('.portfolio-items');
         $container.isotope({
-            filter: '*',
+            filter: '.request_for_quote', //filter: '*',
             animationOptions: {
                 duration: 750,
                 easing: 'linear',
@@ -96,6 +96,8 @@ function main() {
             });
             return false;
         });
+
+
 
     });
 	
