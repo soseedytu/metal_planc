@@ -92,7 +92,7 @@ hr {
 	width: 70px;
 	text-align: center;
 	position: relative;
-	background: #E75926;
+	background: #09AEDD;
 	margin: 0 auto;
 	margin-bottom: 30px;
 	border: 0;
@@ -109,7 +109,7 @@ hr {
 	font-weight: 600;
 }
 .navbar-custom .navbar-brand i.fa {
-	color: #E75926;
+	color: #09AEDD;
 }
 .navbar-custom .navbar-brand:focus {
 	outline: 0;
@@ -121,7 +121,7 @@ hr {
 	padding: 0 4px;
 }
 .navbar-custom .navbar-toggle:hover, .navbar-custom .navbar-toggle:focus {
-	background-color: #E75926;
+	background-color: #09AEDD;
 	color: #ffffff;
 }
 .navbar-custom .navbar-brand .navbar-toggle:focus, .navbar-custom .navbar-brand .navbar-toggle:active {
@@ -137,13 +137,13 @@ hr {
 }
 .navbar-custom .nav li a:hover {
 	outline: 0;
-	color: #E75926;
+	color: #09AEDD;
 	background-color: transparent;
 }
 .navbar-custom .nav li a:focus, .navbar-custom .nav li a:active {
 	outline: 0;
 	background-color: transparent;
-	color: #E75926;
+	color: #09AEDD;
 }
 .navbar-custom .nav li.active {
 	outline: 0;
@@ -181,8 +181,8 @@ hr {
 	text-transform: uppercase;
 }
 #intro .intro-body .brand-heading {
-	color: #E75926;
-	text-shadow: 0 4px #a13e1a;
+	color: #09AEDD;
+	text-shadow: 0 4px #2D859E;
 }
 #intro .intro-body .intro-text {
 	font-size: 18px;
@@ -202,7 +202,7 @@ hr {
 }
 .btn-default {
 	color: #f6f6f6;
-	background: #cf5022;
+	background: #09AEDD;
 	border: 0;
 	padding: 12px 24px;
 	margin: 0 8px;
@@ -240,7 +240,7 @@ hr {
 	content: "✓";
 	font-weight: 600;
 	padding-right: 10px;
-	color: #e75926;
+	color: #09AEDD;
 }
 #about i.fa {
 	float: left;
@@ -283,7 +283,7 @@ hr {
 }
 #services i.fa {
 	font-size: 36px;
-	color: #E75926;
+	color: #09AEDD;
 	transition: all 0.5s;
 }
 /* Gallery Section */
@@ -310,13 +310,13 @@ ol.type li a {
 }
 ol.type li a.active {
 	color: #f6f6f6;
-	border: 1px solid #cf5022;
-	background: #cf5022;
+	border: 1px solid #09AEDD;
+	background: #09AEDD;
 }
 ol.type li a:hover {
 	color: #f6f6f6;
-	border: 1px solid #cf5022;
-	background: #cf5022;
+	border: 1px solid #09AEDD;
+	background: #09AEDD;
 }
 .isotope-item {
 	z-index: 2
@@ -490,7 +490,7 @@ img.img-thumbnail.team-img {
 }
 #contact i.fa {
 	font-size: 22px;
-	color: #e75926;
+	color: #09AEDD;
 	margin-bottom: 10px;
 }
 #contact .text-danger {
@@ -527,7 +527,7 @@ label {
 	box-shadow: transparent;
 }
 #contact .btn-default {
-	background: #cf5022;
+	background: #09AEDD;
 	border: 0;
 	border-radius: 4px;
 	padding: 10px 20px;
@@ -559,7 +559,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 #contact .social i.fa {
 	font-size: 24px;
 	padding-top: 8px;
-	color: #cf5022;
+	color: #09AEDD;
 	border-radius: 4px;
 	transition: all 0.3s;
 }
@@ -577,7 +577,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	color: #999999;
 }
 #footer a:hover, a:focus {
-	color: #e75926;
+	color: #09AEDD;
 }
 #footer p {
 	font-size: 13px;
