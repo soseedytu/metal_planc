@@ -33,6 +33,8 @@ urlpatterns = [
     # Public App
     # http://localhost:8000/public/
     url(r'^public/$', public_view.index, name="public_index"),
+    # http://localhost:8000/public/email
+    url(r'^public/email$', public_view.email, name="public_email"),
     # http://localhost:8000/market_app/buyer/dashboard
     url(r'^login/$', public_view.login, name="auth_login"),
     url(r'^password_reset/$', auth_views.password_reset, {

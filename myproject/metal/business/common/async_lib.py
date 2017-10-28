@@ -1,11 +1,10 @@
 import asyncio
-import uvloop
+# import uvloop
 
 
 class AsyncLibrary(object):
-
     def get_future(self):
-        the_loop = uvloop.new_event_loop()
+        the_loop = asyncio.new_event_loop()
         asyncio.set_event_loop(the_loop)
         the_future = asyncio.Future()
 
