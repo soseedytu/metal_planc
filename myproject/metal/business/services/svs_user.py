@@ -1,5 +1,6 @@
 import sys, asyncio
 
+# -- Metal Class -- #
 from metal.business.repository.repo_company import CompanyRepository
 from metal.business.repository.repo_user import UserRepository
 from metal.business.repository.repo_code import CodeTableRepository
@@ -10,7 +11,21 @@ from metal.business.services.svs_tag import TagService
 from metal.business.services.svs_service import SupplierService
 from metal.business.common.constants import Constants
 from metal.business.common.functions import Functions
+from metal.models.MasterData import User_Profile
 
+# -- Django Contrib Class -- #
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+
+# -- Django Core Class -- #
+from django.core.exceptions import ObjectDoesNotExist
+
+# -- Django http Class -- #
+from django.http import HttpResponse, HttpResponseRedirect
+from django.http import Http404
+from django.urls import reverse
 
 class UserService(object):
 
@@ -94,3 +109,67 @@ class UserService(object):
             print("error: " + sys.exc_info()[0])
             raise
         # return new_user_object
+
+
+    def validate_user(self, request, _email, _password):
+        _value = 'public_index'
+        _user = None
+        try:
+            user_repo = UserRepository()
+            _user = user_repo.get_user(_email.lower())
+        except ObjectDoesNotExist:
+            username = None
+            # raise  Http404("User does not exist")
+            print('user does not exist')
+            messages.error(request, 'You don''t have authorization. Please register first.')
+            #return HttpResponseRedirect(reverse('public_index'))
+            _value = 'public_index'
+            # _url = 'site/index.html'
+        if _user is not None:
+            print(_user.username)
+            user = authenticate(request, username=_user.username, password=_password)
+            try:
+                #user_type = User_Profile.objects.get(user=_user).User_Type
+                #user_type = user_type.Name.lower()
+                user_type_code = user_repo.get_user_profile(_user).User_Type.Code_Table_Code
+                print(user_type_code)
+            except ObjectDoesNotExist:
+                print('user does not exist')
+                messages.error(request, 'Insufficient authorization')
+                #return HttpResponseRedirect(reverse('public_index'))
+                _value = 'public_index'
+            if user is not None:
+                print('authenticated')
+                if user.is_active:
+                    print('user is active')
+                    auth_login(request, user)
+                    print(user_type_code)
+                    print(Constants.code_usertype_supplier)
+                    if str(user_type_code) == str(Constants.code_usertype_supplier):
+                        print('supplier url')
+                        _url = 'user_supplier/index.html'
+                        #return HttpResponseRedirect(reverse('user_supplier_index'))
+                        _value = 'user_supplier_index'
+                        print (_value)
+                        return _value
+                    elif str(user_type_code) == str(Constants.code_usertype_buyer):
+                        _url = 'user_buyer/index.html'
+                        #return HttpResponseRedirect(reverse('user_buyer_index'))
+                        # return render(request, 'buyer/Dashboard.html')
+                        _value = 'user_buyer_index'
+                        print(_value)
+                        return _value
+                else:
+                    print('user is not active')
+                    messages.error(request, 'Non Active User.')
+                    # _url = 'site/index.html'
+                    #return HttpResponseRedirect(reverse('public_index'))
+                    _value = 'public_index'
+            else:
+                print('Invalid Username or Password.')
+                # return HttpResponse('username or password wrong')
+                # raise forms.ValidationError(form.fields['EmailAddress'].error_messages['Bad Username or Password'])
+                messages.error(request, 'Invalid Username or Password.')
+                #return HttpResponseRedirect(reverse('public_index'))
+                _value = 'public_index'
+        return _value
