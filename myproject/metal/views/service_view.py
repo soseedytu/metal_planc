@@ -1,4 +1,4 @@
-import json, asyncio, uvloop
+import json, asyncio
 
 from django.http import HttpResponse
 from metal.business.services.svs_service import SupplierService
@@ -14,7 +14,7 @@ def get_service(request, service_id):
 
     svs = SupplierService()
 
-    loop = uvloop.new_event_loop()
+    loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     service_future = asyncio.Future()
     asyncio.ensure_future(svs.get_supplier_service_by_parent(service_future, service_id))

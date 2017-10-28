@@ -25,6 +25,7 @@ from metal.views import user_supplier_view
 from metal.views import service_view
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -46,7 +47,8 @@ urlpatterns = [
     }, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete,
         name='password_reset_complete'),
-    url(r'^logout/$', auth_views.LogoutView.as_view(), name="sign_out"),
+    url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name="sign_out"),
+    #url(r'^logout/$', auth_views.LogoutView.as_view(), name="sign_out"),
 
     #url(r'^upload/$', public_view.simple_upload, name="upload"),
     # Market App

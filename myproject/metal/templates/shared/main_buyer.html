@@ -48,6 +48,7 @@
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="skin-black-light layout-top-nav" style="height: auto; min-height: 100%;">
+{% if user.is_authenticated %}
 <div class="wrapper" style="height: auto; min-height: 100%;">
 
   {% include 'shared/navi_buyer.html' %}
@@ -93,7 +94,7 @@
 
     {% block page_level_scripts %}
     {% endblock %}
-
+{% endif %}
 </body>
 </html>
 

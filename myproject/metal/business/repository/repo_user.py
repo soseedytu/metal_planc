@@ -36,3 +36,12 @@ class UserRepository(BaseRepository):
         )
         profile.save()
         return profile
+
+    def get_user(self, _email):
+        #_username = User.objects.get(email=_email.lower()).username
+        _user = User.objects.get(email=_email.lower())
+        return _user
+
+    def get_user_profile(self, _user):
+        user_profile = User_Profile.objects.get(user=_user)
+        return user_profile
