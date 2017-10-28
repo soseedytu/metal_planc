@@ -6,6 +6,7 @@ emailRequiredObj = null
 messageRequiredObj = null
 securityTokenObj = null
 contactFormObj = null
+emailFormatRequiredObj = null
 
 function sendMessage(obj) {
 
@@ -84,6 +85,12 @@ function validate_input(name, email, message) {
         issues++;
     }
 
+    var isValidEmail = validEmail( email.trim() );
+    if (isValidEmail == "") {
+        emailFormatRequiredObj.show();
+        issues++;
+    }
+
     if (message.trim() == "") {
         messageRequiredObj.show();
         issues++;
@@ -96,6 +103,11 @@ function validate_input(name, email, message) {
     return (issues == 0);
 }
 
+function validEmail(v) {
+    var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+    return (v.match(r) == null) ? false : true;
+}
+
 function registerObjects() {
 
     nameObj = $('#txt_name')
@@ -105,6 +117,7 @@ function registerObjects() {
     nameRequiredObj = $('#name_required')
     emailRequiredObj = $('#email_required')
     messageRequiredObj = $('#message_required')
+    emailFormatRequiredObj = $('#email_format_required')
 
     contactFormObj = $('#contactForm')
     securityTokenObj = $('input[name=csrfmiddlewaretoken]')
@@ -114,6 +127,7 @@ function hideRequiredMessages() {
     nameRequiredObj.hide();
     emailRequiredObj.hide();
     messageRequiredObj.hide();
+    emailFormatRequiredObj.hide();
 }
 
 $(document).ready(function () {
