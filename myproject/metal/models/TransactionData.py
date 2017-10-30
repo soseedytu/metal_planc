@@ -3,7 +3,7 @@ from django.contrib.auth.models import update_last_login, user_logged_in
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from metal.models.MasterData import User_Profile
+from metal.models.MasterData import User_Profile, Company
 from metal.models.Codes import Code_Table
 
 
@@ -96,3 +96,21 @@ class Document_Targeted_Supplier(models.Model):
     Id = models.AutoField(primary_key=True)  # system will add automatically
     Document = models.ForeignKey(Document, db_index=True, null=False)
     User_Profile = models.ForeignKey(User_Profile, db_index=True, null=False)
+
+
+class Company_Notification(models.Model):
+    Id = models.AutoField(primary_key=True)  # system will add automatically
+    Document = models.ForeignKey(Document, db_index=True, null=False)
+    First_Opened_User = models.ForeignKey(User_Profile, db_index=True, null=False)
+    Receiving_Company = models.ForeignKey(Company, null=False, db_index=True)
+    Message = models.CharField(max_length=500, null=True)
+    Open_Status = models.ForeignKey(Code_Table, db_index=False)
+    Created_Date = models.DateTimeField(auto_now_add=True, null=False)
+    Created_By = models.CharField(max_length=45, null=False, default="admin")
+    Modified_Date = models.DateTimeField(auto_now_add=True, null=False)
+    Modified_By = models.CharField(max_length=45, null=False, default="admin")
+    Status = models.IntegerField(null=False, default=1)
+
+    def __str__(self):
+        return self.Message
+

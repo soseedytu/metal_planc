@@ -119,3 +119,4 @@ class User_Profile_Rating(models.Model):
     Created_Date = models.DateTimeField(auto_now_add=True, null=False)
     Created_By = models.CharField(max_length=45, null=False)
     Version = models.DateTimeField(null=True)
+

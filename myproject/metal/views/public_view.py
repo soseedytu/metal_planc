@@ -1,5 +1,4 @@
 import os, sys, json, smtplib
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from string import Template
 from django.shortcuts import render
@@ -16,8 +15,6 @@ from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.urls import reverse
-from django.core.mail import send_mail
-from metal.business.common.async_lib import AsyncLibrary
 
 
 def index(request):
@@ -107,9 +104,11 @@ def sign_out(request):
     print('Sign Out Started')
     return HttpResponseRedirect(reverse('public_index'))
 
+
 def email(request):
 
     if request.method == 'POST':
+
         name = request.POST['name']
         sender_email = request.POST['email']
         message = request.POST['message']
@@ -128,9 +127,11 @@ def email(request):
         Email: """ + sender_email + """
         
         -------------
+        
         """ + message
 
         try:
+
             msg = MIMEText(message)
             msg['Subject'] = subject
             msg['From'] = metalpolis_email
@@ -146,23 +147,29 @@ def email(request):
                 'result': 'Email sent.',
                 'errors': '',
             }
+
             return HttpResponse(json.dumps(reg_result), content_type="application/json")
 
         except:
+
             print("Unexpected error:", sys.exc_info()[0])
+
+            error_message = "Something wrong when sending email. " + sys.exc_info()[0] + "."
+
             reg_result = {
                 'result': 'error',
-                'errors': "Something wrong when sending email.",
+                'errors': error_message,
             }
+
             return HttpResponse(json.dumps(reg_result), content_type="application/json")
 
     else:
+
         reg_result = {
             'result': 'invalid request',
             'errors': 'invalid request'
         }
+
         return HttpResponse(json.dumps(reg_result), content_type="application/json")
-
-
 
 
