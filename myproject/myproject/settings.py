@@ -50,18 +50,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # EMAIL_HOST = 'smtp.zoho.com'
 # EMAIL_PORT = 465
 # EMAIL_HOST_USER = 'info@metalpolis.com'
 # EMAIL_HOST_PASSWORD = '12345678'
-EMAIL_HOST = 'mail.mritmyanmar.com'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'tester1@mritmyanmar.com'
-EMAIL_HOST_PASSWORD = 'nnhhyy66'
-# EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True
+# EMAIL_USE_SSL = True
+
+## Production setting
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'Metalpolis <info@metalpolis.com>'
 
 ROOT_URLCONF = 'myproject.urls'
 

@@ -24,6 +24,8 @@ class Company(models.Model):
     Reg_No = models.CharField(max_length=45, null=True)
     Contact_No = models.CharField(max_length=45, null=True)
     Unique_Code = models.CharField(max_length=45, null=True)
+    Transport_To_Be_Provided = models.BooleanField(default=1)
+    Materials_To_Be_Provided = models.BooleanField(default=1)
 
     def __str__(self):
         return self.Name

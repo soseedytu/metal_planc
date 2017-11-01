@@ -27,6 +27,9 @@ function sendMessage(obj) {
         csrfmiddlewaretoken: security_token
     };
 
+    var element = "<div id=\"contactFormContainer\" class=\"col-md-8 col-md-offset-2\"><h3>Sending message.</h3></div>";
+    $('#contactFormContainer').replaceWith(element)
+
     $.ajax({
         url: target_url, // the endpoint
         type: "POST", // http method

@@ -28,9 +28,10 @@ class Document(models.Model):
     def __str__(self):
         return self.Title
 
+
 class Request_For_Quotation(models.Model):
     Document_Id = models.OneToOneField(Document, db_index=True, primary_key=True)
-    Title = models.CharField(max_length=300, null=False)
+    Project_No = models.CharField(max_length=300, null=False)
     Final_Closing_Date = models.DateTimeField()
     First_Closing_Date = models.DateTimeField()
     Revised_Closing_Date1 = models.DateTimeField()
@@ -38,9 +39,12 @@ class Request_For_Quotation(models.Model):
     Total_Submitted_Quotes = models.IntegerField(default=0)
     Required_Service_Tags = models.CharField(max_length=400)
     Is_Selected = models.BooleanField(default=1)
+    Transport_To_Be_Provided = models.BooleanField(default=1)
+    Materials_To_Be_Provided = models.BooleanField(default=1)
 
     def __str__(self):
         return self.Title
+
 
 class Supplier_Quotation(models.Model):
     Quotation_Document = models.OneToOneField(Document, db_index=True, primary_key=True, related_name='Document')
@@ -113,4 +117,3 @@ class Company_Notification(models.Model):
 
     def __str__(self):
         return self.Message
-

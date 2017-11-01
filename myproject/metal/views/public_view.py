@@ -1,7 +1,8 @@
-import os, sys, json, smtplib
+import os, sys, json, smtplib, asyncio
 from email.mime.text import MIMEText
 from string import Template
 from django.shortcuts import render
+from django.core.mail import send_mail
 from metal.business.viewmodels.vm_login import LoginForm
 from metal.models.MasterData import User_Profile
 from django.shortcuts import render
@@ -115,11 +116,6 @@ def email(request):
         subject = 'Enquiry from public site - ' + name
         metalpolis_email = 'info@metalpolis.com'
 
-        EMAIL_HOST = 'smtp.zoho.com'
-        EMAIL_PORT = 465
-        EMAIL_HOST_USER = 'info@metalpolis.com'
-        EMAIL_HOST_PASSWORD = '12345678'
-
         message = """
         Enquiry From
         -------------
@@ -132,16 +128,18 @@ def email(request):
 
         try:
 
-            msg = MIMEText(message)
-            msg['Subject'] = subject
-            msg['From'] = metalpolis_email
-            msg['To'] = metalpolis_email
-            mail_body = msg.as_string()
-
-            s = smtplib.SMTP_SSL(host=EMAIL_HOST, port=EMAIL_PORT)
-            s.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
-            s.sendmail(metalpolis_email, metalpolis_email, mail_body)
-            s.quit()
+            ioloop = asyncio.new_event_loop()
+            asyncio.set_event_loop(ioloop)
+            tasks = [ioloop.create_task(send_mail(
+                subject,
+                message,
+                metalpolis_email,
+                [metalpolis_email],
+                fail_silently=False,
+            ))]
+            wait_tasks = asyncio.wait(tasks)
+            ioloop.run_until_complete(wait_tasks)
+            ioloop.close()
 
             reg_result = {
                 'result': 'Email sent.',
@@ -154,7 +152,7 @@ def email(request):
 
             print("Unexpected error:", sys.exc_info()[0])
 
-            error_message = "Something wrong when sending email. " + sys.exc_info()[0] + "."
+            error_message = "Something wrong when sending email. " + str(sys.exc_info()[0]) + "."
 
             reg_result = {
                 'result': 'error',
