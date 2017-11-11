@@ -158,7 +158,7 @@ hr {
 #intro {
 	display: table;
 	width: 100%;
-	height: auto;
+	height: 100%; /*auto*/
 	padding: 100px 0;
 	text-align: center;
 	color: #fff;
@@ -170,7 +170,7 @@ hr {
 	-o-background-size: cover;
 }
 #intro .intro-body {
-	background: rgba(1,1,1,0.7);
+	/*background: rgba(1,1,1,0.7);*/
 	display: table-cell;
 	/*vertical-align: middle;*/
 }
@@ -301,6 +301,7 @@ ul.cat li {
 ol.type li {
 	display: inline-block;
 	margin-left: 20px;
+    margin-bottom: 30px;
 }
 ol.type li a {
 	color: #777;
@@ -592,7 +593,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 
 @media (max-width: 640px) {
 #intro .intro-body H1 {
-	font-size: 5em;
+	font-size: 250%;
 }
 }
 

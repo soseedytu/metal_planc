@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
     <title>Metalpolis</title>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -65,21 +65,22 @@
 <div id="intro">
     <div class="intro-body">
         <div class="container">
-
-            <br><br>
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <h1>We are <span class="brand-heading">Metalpolis</span></h1>
+                    <h1><span class="brand-heading">Metalpolis</span></h1>
                     <p class="intro-text">Your Metalworks Marketplace</p>
                 </div>
+            </div>
+            <div class="row">
+                <a href="#about" class="btn btn-default btn-sm page-scroll">Learn More</a>
             </div>
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="wrap">
                         <p class="form-title">
-                            <a href="#about" class="btn btn-default btn-sm page-scroll">Learn More</a>
-                            <br/><br/>
                             or, Sign In</p>
                         <form name="loginform" id="loginform" class="login" action="{% url 'auth_login' %}"
                               method="post">
@@ -177,7 +178,7 @@
     </div>
 </div>
 <!-- Services Section -->
-<div id="services" class="text-center" style="background-position: 50% -76px;">
+<div id="services" class="text-center" style="background-position: 50% -76px; background-size: cover;">
     <div class="container">
         <div class="section-title center">
             <h2>How it works</h2>
@@ -281,11 +282,11 @@
                     <div class="portfolio-item">
                         <div class="hover-bg">
                             <a href="/../static/public/img/services/CustomFabrication_Ducting_Sauna.jpg"
-                               title="Ducting Sauna"
+                               title="Ducting"
                                rel="prettyPhoto">
                                 <div class="hover-text">
                                     <h4>Custom Fabrication</h4>
-                                    <p>Ducting Sauna</p>
+                                    <p>Ducting</p>
                                 </div>
                                 <img src="/../static/public/img/services/CustomFabrication_Ducting_Sauna.jpg"
                                      class="img-responsive" alt="Custom Fabrication"> </a></div>
@@ -296,11 +297,11 @@
                     <div class="portfolio-item">
                         <div class="hover-bg">
                             <a href="/../static/public/img/services/CustomFabrication_OffshoreStructure_sauna.jpg"
-                               title="Offshore Structure Sauna"
+                               title="Offshore Structure"
                                rel="prettyPhoto">
                                 <div class="hover-text">
                                     <h4>Custom Fabrication</h4>
-                                    <p>Offshore Structure Sauna</p>
+                                    <p>Offshore Structure</p>
                                 </div>
                                 <img src="/../static/public/img/services/CustomFabrication_OffshoreStructure_sauna.jpg"
                                      class="img-responsive" alt="Custom Fabrication"> </a></div>
@@ -311,11 +312,11 @@
                     <div class="portfolio-item">
                         <div class="hover-bg">
                             <a href="/../static/public/img/services/CustomFabrication_Railing_sauna.jpg"
-                               title="Railing Sauna"
+                               title="Railing"
                                rel="prettyPhoto">
                                 <div class="hover-text">
                                     <h4>Custom Fabrication</h4>
-                                    <p>Railing Sauna</p>
+                                    <p>Railing</p>
                                 </div>
                                 <img src="/../static/public/img/services/CustomFabrication_Railing_sauna.jpg"
                                      class="img-responsive" alt="Custom Fabrication"> </a></div>
@@ -326,11 +327,11 @@
                     <div class="portfolio-item">
                         <div class="hover-bg">
                             <a href="/../static/public/img/services/CustomFabrication_Skid_sauna.jpg"
-                               title="Skid Sauna"
+                               title="Skid"
                                rel="prettyPhoto">
                                 <div class="hover-text">
                                     <h4>Custom Fabrication</h4>
-                                    <p>Skid Sauna</p>
+                                    <p>Skid</p>
                                 </div>
                                 <img src="/../static/public/img/services/CustomFabrication_Skid_sauna.jpg"
                                      class="img-responsive" alt="Custom Fabrication"> </a></div>
@@ -341,11 +342,11 @@
                     <div class="portfolio-item">
                         <div class="hover-bg">
                             <a href="/../static/public/img/services/CustomFabrication_Storage_Cage_sauna.jpg"
-                               title="Storage Cage Sauna"
+                               title="Storage Cage"
                                rel="prettyPhoto">
                                 <div class="hover-text">
                                     <h4>Custom Fabrication</h4>
-                                    <p>Storage Cage Sauna</p>
+                                    <p>Storage Cage</p>
                                 </div>
                                 <img src="/../static/public/img/services/CustomFabrication_Storage_Cage_sauna.jpg"
                                      class="img-responsive" alt="Custom Fabrication"> </a></div>
@@ -356,11 +357,11 @@
                     <div class="portfolio-item">
                         <div class="hover-bg">
                             <a href="/../static/public/img/services/CustomFabrication_Tanks_sauna.jpg"
-                               title="Tanks Sauna"
+                               title="Tanks"
                                rel="prettyPhoto">
                                 <div class="hover-text">
                                     <h4>Custom Fabrication</h4>
-                                    <p>Tanks Sauna</p>
+                                    <p>Tanks</p>
                                 </div>
                                 <img src="/../static/public/img/services/CustomFabrication_Tanks_sauna.jpg"
                                      class="img-responsive" alt="Custom Fabrication"> </a></div>
@@ -784,17 +785,17 @@
                 <div id="success"></div>
                 <button type="button" id="btnMessage" class="btn btn-default">Send Message</button>
             </form>
-            <div class="social">
-                <h3>Follow us</h3>
-                <ul>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-            </div>
+{#            <div class="social">#}
+{#                <h3>Follow us</h3>#}
+{#                <ul>#}
+{#                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-github"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>#}
+{#                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
+{#                </ul>#}
+{#            </div>#}
         </div>
     </div>
 </div>
